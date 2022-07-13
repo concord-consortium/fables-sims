@@ -3,11 +3,11 @@
 # Typically this is the Project name.
 # The trailing slash is important
 # Can be set to an empty string for working at the top level of the bucket
-S3_BUCKET_PREFIX='fable-sims/'
+S3_BUCKET_PREFIX='fables-sims/'
 # AWS CloudFront distribution ID
 DISTRIBUTION_ID='TODO TODO TODO'
 # AWS CloudFront distribution domain
-DISTRIBUTION_DOMAIN='fable-sims.concord.org'
+DISTRIBUTION_DOMAIN='fables-sims.concord.org'
 # name of branch to deploy to root of site
 ROOT_BRANCH='production'
 # Bucket to deploy to, typically this is 'model-resources', but some projects

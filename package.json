@@ -1,10 +1,10 @@
 {
-  "name": "fable-sims",
+  "name": "fables-sims",
   "version": "0.0.1",
-  "description": "Concord Consortium FABLE sims",
+  "description": "Concord Consortium Fables sims",
   "main": "index.js",
   "jest": {
-    "testURL": "https://fable-sims.unexisting.url.com",
+    "testURL": "https://fables-sims.unexisting.url.com",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
@@ -55,14 +55,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/concord-consortium/fable-sims.git"
+    "url": "git+https://github.com/concord-consortium/fables-sims.git"
   },
   "author": "Concord Consortium",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/concord-consortium/fable-sims/issues"
+    "url": "https://github.com/concord-consortium/fables-sims/issues"
   },
-  "homepage": "https://github.com/concord-consortium/fable-sims#readme",
+  "homepage": "https://github.com/concord-consortium/fables-sims#readme",
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",
     "all": true,
