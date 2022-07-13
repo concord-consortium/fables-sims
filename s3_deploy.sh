@@ -1,11 +1,16 @@
 #!/bin/bash
 
+
+# Follow instructions in this guide to setup an S3 & Cloudfront distribution:
+# https://docs.google.com/document/d/1EacCSUhaHXaL8ll8xjcd4svyguEO-ipf5aF980-_q8
+
+
 # Typically this is the Project name.
 # The trailing slash is important
 # Can be set to an empty string for working at the top level of the bucket
 S3_BUCKET_PREFIX='fables-sims/'
 # AWS CloudFront distribution ID
-DISTRIBUTION_ID='TODO TODO TODO'
+DISTRIBUTION_ID='E2V6MDJKMVMZXP'
 # AWS CloudFront distribution domain
 DISTRIBUTION_DOMAIN='fables-sims.concord.org'
 # name of branch to deploy to root of site
