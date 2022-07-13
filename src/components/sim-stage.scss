@@ -9,17 +9,13 @@
   justify-content: center;
   padding: 1em;
 
-  .controls {
-    margin: 1em;
-    padding: 1em;
+  .toolbar {
+    width: 100%;
+    margin-left: 2em;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    border-radius: 10px;
-    min-height: 30px;
-    background-color: #0481A0;
-    width: 90%;
+    justify-content: flex-start
   }
 }
 

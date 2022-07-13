@@ -4,7 +4,7 @@ import { IconBack } from "./icons/icon-back";
 import { MediumForceIcon } from "./icons/medium-force-icon";
 import { NoForceIcon } from "./icons/no-force-icon";
 import { StrongForceIcon } from "./icons/strong-force-icon";
-import "./sim-stage.scss";
+import "./force-selector.scss";
 
 export type ForceSelection = null | "none" | "medium" | "strong";
 interface ForceSelectorProps {
@@ -24,14 +24,14 @@ export const ForceSelector: React.FC<ForceSelectorProps> = (props:ForceSelectorP
   };
 
   return (
-    <div className="controls" data-cy="force-selector">
-      <IconBack selected={selection==="none"} handleSelect={()=>select("none")}>
+    <div className="force-selector" data-cy="force-selector">
+      <IconBack name="none" selected={selection==="none"} handleSelect={()=>select("none")}>
         <NoForceIcon/>
       </IconBack>
-      <IconBack selected={selection==="medium"} handleSelect={()=>select("medium")}>
+      <IconBack name="medium" selected={selection==="medium"} handleSelect={()=>select("medium")}>
         <MediumForceIcon/>
       </IconBack>
-      <IconBack selected={selection==="strong"} handleSelect={()=>select("strong")}>
+      <IconBack name="strong" selected={selection==="strong"} handleSelect={()=>select("strong")}>
         <StrongForceIcon/>
       </IconBack>
     </div>

@@ -1,0 +1,17 @@
+
+.force-selector {
+  margin: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  min-height: 30px;
+  background-color: #0481A0;
+  .buttons {
+    div {
+      margin-left: 12em;
+    }
+  }
+}

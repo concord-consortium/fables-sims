@@ -35,7 +35,9 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
             </Layer>
         </Stage>
       </div>
-      <ForceSelector selected={null} onChange={(s) => setForce(s)}/>
+      <div className="toolbar">
+        <ForceSelector selected={null} onChange={(s) => setForce(s)}/>
+      </div>
     </div>
   );
 };
