@@ -1,4 +1,4 @@
-# Starter Projects Localization
+# Fable Sims Localization
 
 The modules within `utils/translation` can be used to add text localization to a starter-projects based application.
 
