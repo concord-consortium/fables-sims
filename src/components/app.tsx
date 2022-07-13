@@ -1,19 +1,26 @@
 import React from "react";
-import Icon from "../assets/concord.png";
-import { Stage, Layer, Circle } from "react-konva";
+import { Circle, Image } from "react-konva";
+import useImage from "use-image";
+
+import { SimStage } from "./sim-stage";
+
+import None from "../assets/people/none.png";
+
 import "./app.scss";
+
+
+
+const DudeImage = () => {
+  const [image] = useImage(None);
+  return (<Image y={40} scale={{x: 0.1, y:0.1}} image={image} />);
+};
 
 export const App = () => {
   return (
     <div className="app">
-      <Stage
-        width={window.innerWidth}
-        height={window.innerHeight}>
-          <Layer>
-            <Circle x={200} y={100} radius={50} fill="green" />
-          </Layer>
-      </Stage>
-      <img src={Icon}/>
+      <SimStage sceneWidth={100} aspectRatio={3/2}>
+        <DudeImage />
+      </SimStage>
     </div>
   );
 };

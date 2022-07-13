@@ -1,0 +1,35 @@
+
+.chrome {
+  background-color: #016082;
+  color: white;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+
+  .controls {
+    margin: 1em;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    min-height: 30px;
+    background-color: #0481A0;
+    width: 90%;
+  }
+}
+
+.stage-container {
+  border-radius: 20px;
+  background-color:white;
+  width: 95%;
+  box-sizing: border-box;
+}
+
+.konvajs-content {
+  border-radius: 20px;
+}
