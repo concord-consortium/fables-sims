@@ -1,10 +1,9 @@
-import React from "react";
-import { Stage, Layer } from "react-konva";
+import React, { useState } from "react";
+import { Stage, Layer, Rect } from "react-konva";
 import { useElementSize } from "../hooks/useElementSize";
-import { IconBack } from "./icons/icon-back";
-import { MediumForceIcon } from "./icons/medium-force-icon";
-import { NoForceIcon } from "./icons/no-force-icon";
-import { StrongForceIcon } from "./icons/strong-force-icon";
+import { ForceSelection, ForceSelector } from "./force-selector";
+import { Guy } from "./guy";
+
 import "./sim-stage.scss";
 
 interface SimStageProps {
@@ -15,39 +14,28 @@ interface SimStageProps {
 
 export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
 
-  const {sceneWidth, aspectRatio, children } = props;
+  const {sceneWidth, aspectRatio } = props;
   const [stageRef, { width}] = useElementSize();
-
-  const padding = 10;
-  const theWidth = (width||0) - 2 * padding;
-
+  const [force, setForce] = useState<ForceSelection>(null);
+  const theWidth = (width||10);
   const sceneHeight = 100 / aspectRatio;
   const scale = theWidth / sceneWidth;
 
   return (
     <div className="chrome">
-      <div className="stage-container" ref={stageRef}>
+      <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
           width={sceneWidth * scale}
           height={sceneHeight * scale}
           scale={{x: scale, y: scale}}
           >
             <Layer>
-              {children}
+              <Rect width={400} height={30} fill="#87A5AF" y={50} x={0}/>
+              <Guy location={1} force={force}/>
             </Layer>
         </Stage>
       </div>
-      <div className="controls">
-        <IconBack selected={true}>
-          <NoForceIcon/>
-        </IconBack>
-        <IconBack selected={true}>
-          <MediumForceIcon/>
-        </IconBack>
-        <IconBack selected={true}>
-          <StrongForceIcon/>
-        </IconBack>
-      </div>
+      <ForceSelector selected={null} onChange={(s) => setForce(s)}/>
     </div>
   );
 };

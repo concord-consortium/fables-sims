@@ -4,8 +4,13 @@ context("Test the overall app", () => {
   });
 
   describe("Desktop functionalities", () => {
-    it("renders with text", () => {
-      cy.get(".app").should("have.text", "Hello World");
+    it("renders with a simulation stage", () => {
+      cy.get('[data-cy=stage]')
+        .should('be.visible');
+    });
+    it("renders with a force-selector", () => {
+      cy.get('[data-cy=force-selector]')
+        .should('be.visible');
     });
   });
 });
