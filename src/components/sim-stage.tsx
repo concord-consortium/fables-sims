@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Stage, Layer, Rect } from "react-konva";
 import { useElementSize } from "../hooks/useElementSize";
 import { ForceSelection, ForceSelector } from "./force-selector";
-import { Guy } from "./guy";
+import { Figure } from "./figure";
+import { Car } from "./image-components/car";
+import { Cart } from "./image-components/cart";
 
 import "./sim-stage.scss";
 
@@ -31,7 +33,9 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
           >
             <Layer>
               <Rect width={400} height={30} fill="#87A5AF" y={50} x={0}/>
-              <Guy location={1} force={force}/>
+              <Figure location={1} force={force}/>
+              <Cart location={16} />
+              <Car location={85} />
             </Layer>
         </Stage>
       </div>

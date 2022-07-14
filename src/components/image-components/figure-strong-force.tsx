@@ -2,12 +2,12 @@ import React from "react";
 import { Image } from "react-konva";
 import useImage from "use-image";
 
-import None from "../../assets/people/none.png";
+import None from "../../assets/people/strong.png";
 
-export interface GuyProps {
+export interface FigureProps {
   x: number;
 }
-export const GuyNoForce = (props: GuyProps) => {
+export const FigureStrongForce = (props: FigureProps) => {
   const { x } = props;
   const [image] = useImage(None);
   return (<Image x={x} y={40} scale={{x: 0.1, y:0.1}} image={image} />);
