@@ -82,16 +82,25 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
     }
   };
 
+  const reset = () => {
+    setCartLocation(initialPosition);
+    setCartVelocity(initialVelocity);
+    setFigureLocation(initialFigurePosition);
+    setStatus("start");
+  };
+
   const togglePlay = () => {
     if(playing) {
       setPlaying(false);
     } else {
-      setCartLocation(initialPosition);
-      setCartVelocity(initialVelocity);
-      setFigureLocation(initialFigurePosition);
-      setStatus("start");
+      reset();
       setPlaying(true);
     }
+  };
+
+  const selectForce = (f: ForceSelection) => {
+    setForce(f);
+    reset();
   };
 
   useAnimationFrame(incrementLocation);
@@ -107,7 +116,9 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
           >
             <Layer>
               <Rect width={400} height={30} fill="#87A5AF" y={35} x={0}/>
-              <Figure location={figureLocation} force={force}/>
+              { (cartLocation > figureLocation) &&
+                <Figure location={figureLocation} force={force}/>
+              }
               <Cart x={cartLocation} y={25}/>
               <Car x={85} y={20}/>
               {(status === "failure") && <Bam x={71} y={22}/>}
@@ -116,7 +127,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
       </div>
       <div className="tool-label">Pulling Force:</div>
       <div className="toolbar">
-        <ForceSelector selected={null} onChange={(s) => setForce(s)}/>
+        <ForceSelector selected={null} onChange={selectForce}/>
         <div>
           <IconBack name="Play" selected={!playing} handleSelect={!playing ? togglePlay : undefined}>
             <PlayIcon/>
