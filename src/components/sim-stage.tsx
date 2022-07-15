@@ -10,6 +10,7 @@ import { PlayIcon } from "./icons/play-icon";
 import "./sim-stage.scss";
 import { IconBack } from "./icons/icon-back";
 import useAnimationFrame from "../hooks/useAnimationFrame";
+import { VelocityPanel } from "./velocity-panel";
 
 interface SimStageProps {
   sceneWidth: number;
@@ -23,7 +24,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
   const [stageRef, { width}] = useElementSize();
 
   const theWidth = (width||10);
-  const sceneHeight = 100 / aspectRatio;
+  const height = width / aspectRatio;
   const scale = theWidth / sceneWidth;
 
   const maxLocation = 63;
@@ -38,7 +39,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
 
   // Don't feel bad about changing these numbers this simulation doesn't
   // use real units and mass is ignored. Just choose values that look right.
-  const epsilon = 0.1;
+  const epsilon = 0.0001;
   const frictionOnly = 0.01;
   const mediumForce = 0.4;
   const strongForce = 0.7;
@@ -60,11 +61,11 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
             deltaV = frictionOnly * delta;
             break;
         }
+        setCartVelocity(cartVelocity - deltaV);
         if(cartVelocity < epsilon) {
           setCartVelocity(0);
           setPlaying(false);
         }
-        setCartVelocity(cartVelocity - deltaV);
       }
       setCartLocation(cartLocation + cartVelocity);
       if(force === "medium" || force === "strong") {
@@ -92,13 +93,11 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
 
   return (
     <div className="chrome">
-      <div className="readout">
-        {(cartVelocity * 6).toFixed(2)} feet per second
-      </div>
+      <VelocityPanel velocity={cartVelocity}/>
       <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
-          width={sceneWidth * scale}
-          height={sceneHeight * scale}
+          width={width}
+          height={height}
           scale={{x: scale, y: scale}}
           >
             <Layer>

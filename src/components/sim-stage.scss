@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   padding: 1em;
-
+  aspect-ratio: 3/2;
   .toolbar {
     width: 100%;
     margin-left: 2em;
@@ -22,8 +22,10 @@
 .stage-container {
   border-radius: 20px;
   background-color:white;
-  width: 95%;
   box-sizing: border-box;
+  width: 95%;
+  aspect-ratio: 3/2;
+  margin: 10px;
 }
 
 .konvajs-content {

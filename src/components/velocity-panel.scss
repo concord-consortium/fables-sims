@@ -1,0 +1,27 @@
+
+.velocity-panel {
+  background-color: #016082;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 2em;
+  margin-left: 25px;
+  justify-self: flex-start;
+  align-self: flex-start;
+  .label {
+    margin-right: 10px;
+    font-family: monospace;
+    font-size: 12pt;
+  }
+  svg {
+    height: 20px;
+    rect.bar {
+      fill: #EA6D2F;
+    }
+    rect.background {
+      fill: white;
+    }
+  }
+}
