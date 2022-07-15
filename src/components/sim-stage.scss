@@ -7,27 +7,28 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1em;
   aspect-ratio: 3/2;
+  padding: 1em;
   .toolbar {
-    width: 100%;
-    margin-left: 2em;
+    align-self: stretch;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start
   }
+  > div {
+    margin: 5px 10px;
+  }
+
 }
 
 .stage-container {
   border-radius: 20px;
   background-color:white;
   box-sizing: border-box;
-  width: 95%;
-  aspect-ratio: 3/2;
-  margin: 10px;
+  align-self: stretch;
 }
 
-.konvajs-content {
-  border-radius: 20px;
+.tool-label {
+  align-self: flex-start;
 }

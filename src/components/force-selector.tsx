@@ -24,16 +24,18 @@ export const ForceSelector: React.FC<ForceSelectorProps> = (props:ForceSelectorP
   };
 
   return (
-    <div className="force-selector" data-cy="force-selector">
-      <IconBack name="none" selected={selection==="none"} handleSelect={()=>select("none")}>
-        <NoForceIcon/>
-      </IconBack>
-      <IconBack name="medium" selected={selection==="medium"} handleSelect={()=>select("medium")}>
-        <MediumForceIcon/>
-      </IconBack>
-      <IconBack name="strong" selected={selection==="strong"} handleSelect={()=>select("strong")}>
-        <StrongForceIcon/>
-      </IconBack>
+    <div className="force-selector-wrapper">
+      <div className="force-selector" data-cy="force-selector">
+        <IconBack name="none" selected={selection==="none"} handleSelect={()=>select("none")}>
+          <NoForceIcon/>
+        </IconBack>
+        <IconBack name="medium" selected={selection==="medium"} handleSelect={()=>select("medium")}>
+          <MediumForceIcon/>
+        </IconBack>
+        <IconBack name="strong" selected={selection==="strong"} handleSelect={()=>select("strong")}>
+          <StrongForceIcon/>
+        </IconBack>
+      </div>
     </div>
   );
 };

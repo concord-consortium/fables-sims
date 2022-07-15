@@ -6,6 +6,7 @@ import { Figure } from "./figure";
 import { Car } from "./image-components/car";
 import { Cart } from "./image-components/cart";
 import { PlayIcon } from "./icons/play-icon";
+import { Bam } from "./image-components/bam";
 
 import "./sim-stage.scss";
 import { IconBack } from "./icons/icon-back";
@@ -36,6 +37,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
   const [figureLocation, setFigureLocation] = useState(initialFigurePosition);
   const [cartVelocity, setCartVelocity] = useState(initialVelocity);
   const [playing, setPlaying] = useState(false);
+  const [status, setStatus] = useState<"failure"|"success"|"start">("start");
 
   // Don't feel bad about changing these numbers this simulation doesn't
   // use real units and mass is ignored. Just choose values that look right.
@@ -65,6 +67,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
         if(cartVelocity < epsilon) {
           setCartVelocity(0);
           setPlaying(false);
+          setStatus("success");
         }
       }
       setCartLocation(cartLocation + cartVelocity);
@@ -74,6 +77,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
       if(cartLocation > maxLocation) {
         // TODO display final state
         setPlaying(false);
+        setStatus("failure");
       }
     }
   };
@@ -85,6 +89,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
       setCartLocation(initialPosition);
       setCartVelocity(initialVelocity);
       setFigureLocation(initialFigurePosition);
+      setStatus("start");
       setPlaying(true);
     }
   };
@@ -105,13 +110,15 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
               <Figure location={figureLocation} force={force}/>
               <Cart location={cartLocation} />
               <Car location={85} />
+              {(status === "failure") && <Bam location={71} />}
             </Layer>
         </Stage>
       </div>
+      <div className="tool-label">Pulling Force:</div>
       <div className="toolbar">
         <ForceSelector selected={null} onChange={(s) => setForce(s)}/>
         <div>
-          <IconBack name="Play" selected={true} handleSelect={togglePlay}>
+          <IconBack name="Play" selected={!playing} handleSelect={!playing ? togglePlay : undefined}>
             <PlayIcon/>
           </IconBack>
         </div>

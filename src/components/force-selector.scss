@@ -1,17 +1,22 @@
 
-.force-selector {
-  margin: 0 5px;
-  padding: 5px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 10px;
-  min-height: 30px;
-  background-color: #0481A0;
-  .buttons {
-    div {
-      margin-left: 12em;
+.force-selector-wrapper {
+  .label {
+    margin-bottom: 5px;
+  }
+  .force-selector {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    min-height: 30px;
+    background-color: #0481A0;
+    .buttons {
+      div {
+        margin-left: 12em;
+      }
     }
   }
+
 }
