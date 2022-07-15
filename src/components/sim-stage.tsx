@@ -28,7 +28,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
 
   const maxLocation = 63;
   const initialVelocity = 1;
-  const initialPosition = 6;
+  const initialPosition = -40;
   const initialFigurePosition = 1;
   const [force, setForce] = useState<ForceSelection>(null);
   const [cartLocation, setCartLocation] = useState(initialPosition);
@@ -36,25 +36,39 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
   const [cartVelocity, setCartVelocity] = useState(initialVelocity);
   const [playing, setPlaying] = useState(false);
 
-
+  // Don't feel bad about changing these numbers this simulation doesn't
+  // use real units and mass is ignored. Just choose values that look right.
+  const epsilon = 0.1;
+  const frictionOnly = 0.01;
+  const mediumForce = 0.4;
+  const strongForce = 0.7;
+  const figureArmLength = 14;
+  let deltaV = 0;
   const incrementLocation = (args: {time: number, delta:number}) => {
+    const { delta } = args;
+    if (delta === 0) return;
     if(playing) {
-      const epsilon = 0.1;
-      const mediumForce = 0.006;
-      const strongForce = 0.01;
-      switch (force) {
-        case "medium":
-          setCartVelocity(cartVelocity < epsilon ? 0 : cartVelocity - mediumForce);
-          break;
-        case "strong":
-          setCartVelocity(cartVelocity < epsilon ? 0 : cartVelocity - strongForce);
-          break;
-        default:
-          break;
+      if(cartLocation > figureLocation) {
+        switch (force) {
+          case "medium":
+            deltaV = mediumForce * delta;
+            break;
+          case "strong":
+            deltaV = strongForce * delta;
+            break;
+          default:
+            deltaV = frictionOnly * delta;
+            break;
+        }
+        if(cartVelocity < epsilon) {
+          setCartVelocity(0);
+          setPlaying(false);
+        }
+        setCartVelocity(cartVelocity - deltaV);
       }
       setCartLocation(cartLocation + cartVelocity);
       if(force === "medium" || force === "strong") {
-        setFigureLocation(cartLocation - 14);
+        setFigureLocation(Math.max(cartLocation - figureArmLength, initialFigurePosition));
       }
       if(cartLocation > maxLocation) {
         // TODO display final state
@@ -79,7 +93,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
   return (
     <div className="chrome">
       <div className="readout">
-
+        {(cartVelocity * 6).toFixed(2)} feet per second
       </div>
       <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
