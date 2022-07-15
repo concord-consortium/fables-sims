@@ -6,17 +6,18 @@ import { FigureStrongForce} from "./image-components/figure-strong-force";
 import "./app.scss";
 
 interface FigureProps {
-  location: number;
+  x: number;
+  y: number;
   force: null | "none" | "medium" | "strong";
 }
 
 export const Figure = (props: FigureProps) => {
-  const { force, location } = props;
+  const { force, x, y } = props;
   if (force === "medium") {
-    return <FigureMediumForce x={location} y={22}/>;
+    return <FigureMediumForce x={x} y={y}/>;
   }
   if (force === "strong") {
-    return <FigureStrongForce x={location} y={22}/>;
+    return <FigureStrongForce x={x} y={y}/>;
   }
-  return <FigureNoForce x={location} y={22}/>;
+  return <FigureNoForce x={x} y={y}/>;
 };
