@@ -6,7 +6,7 @@ import "./app.scss";
 export const App = () => {
   return (
     <div className="app">
-      <SimStage sceneWidth={100} aspectRatio={3/2} />
+      <SimStage sceneWidth={100} aspectRatio={2} />
     </div>
   );
 };

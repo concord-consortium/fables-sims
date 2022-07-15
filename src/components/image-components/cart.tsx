@@ -5,10 +5,11 @@ import useImage from "use-image";
 import img from "../../assets/cart.png";
 
 export interface CartProps {
-  location: number;
+  x: number;
+  y: number;
 }
 export const Cart = (props: CartProps) => {
-  const { location } = props;
+  const { x, y } = props;
   const [image] = useImage(img);
-  return (<Image x={location} y={44} scale={{x: 0.1, y:0.1}} image={image} />);
+  return (<Image x={x} y={y} scale={{x: 0.1, y:0.1}} image={image} />);
 };

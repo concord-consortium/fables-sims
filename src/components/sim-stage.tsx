@@ -106,11 +106,11 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
           scale={{x: scale, y: scale}}
           >
             <Layer>
-              <Rect width={400} height={30} fill="#87A5AF" y={50} x={0}/>
+              <Rect width={400} height={30} fill="#87A5AF" y={35} x={0}/>
               <Figure location={figureLocation} force={force}/>
-              <Cart location={cartLocation} />
-              <Car location={85} />
-              {(status === "failure") && <Bam location={71} />}
+              <Cart x={cartLocation} y={25}/>
+              <Car x={85} y={20}/>
+              {(status === "failure") && <Bam x={71} y={22}/>}
             </Layer>
         </Stage>
       </div>

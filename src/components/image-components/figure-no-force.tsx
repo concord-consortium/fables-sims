@@ -6,9 +6,10 @@ import None from "../../assets/people/none.png";
 
 export interface FigureProps {
   x: number;
+  y: number;
 }
 export const FigureNoForce = (props: FigureProps) => {
-  const { x } = props;
+  const { x, y } = props;
   const [image] = useImage(None);
-  return (<Image x={x} y={40} scale={{x: 0.1, y:0.1}} image={image} />);
+  return (<Image x={x} y={y} scale={{x: 0.1, y:0.1}} image={image} />);
 };

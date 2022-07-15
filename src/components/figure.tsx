@@ -13,10 +13,10 @@ interface FigureProps {
 export const Figure = (props: FigureProps) => {
   const { force, location } = props;
   if (force === "medium") {
-    return <FigureMediumForce x={location} />;
+    return <FigureMediumForce x={location} y={22}/>;
   }
   if (force === "strong") {
-    return <FigureStrongForce x={location} />;
+    return <FigureStrongForce x={location} y={22}/>;
   }
-  return <FigureNoForce x={location}/>;
+  return <FigureNoForce x={location} y={22}/>;
 };
