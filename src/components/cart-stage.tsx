@@ -8,14 +8,14 @@ import { Cart } from "./image-components/cart";
 import { PlayIcon } from "./icons/play-icon";
 import { Bam } from "./image-components/bam";
 
-import "./sim-stage.scss";
+import "./cart-stage.scss";
 import { IconBack } from "./icons/icon-back";
 import useAnimationFrame from "../hooks/useAnimationFrame";
 import { VelocityPanel } from "./velocity-panel";
 import { FigureNoForce } from "./image-components/figure-no-force";
 import { MessageArea } from "./message-area";
 
-interface SimStageProps {
+interface CartStageProps {
   sceneWidth: number;
   aspectRatio: number;
   children?: React.ReactNode
@@ -32,7 +32,7 @@ const mediumForce = 0.4;
 const strongForce = 0.7;
 const figureArmLength = 14;
 
-export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
+export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
 
   const {sceneWidth, aspectRatio } = props;
   const [stageRef, { width}] = useElementSize();

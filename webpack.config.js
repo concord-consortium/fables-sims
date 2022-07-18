@@ -21,7 +21,10 @@ module.exports = (env, argv) => {
       },
     },
     devtool: devMode ? 'eval-cheap-module-source-map' : 'source-map',
-    entry: './src/index.tsx',
+    entry: {
+      cart: './src/cart-index.tsx',
+      tugboat: './src/tugBoat-index.tsx',
+    },
     mode: 'development',
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -131,7 +134,14 @@ module.exports = (env, argv) => {
         filename: devMode ? 'assets/[name].css' : 'assets/[name].[contenthash].css',
       }),
       new HtmlWebpackPlugin({
-        filename: 'index.html',
+        filename: 'cart-index.html',
+        chunks:    ['cart'],
+        template: 'src/index.html',
+        favicon: 'src/public/favicon.ico',
+      }),
+      new HtmlWebpackPlugin({
+        filename: 'tugboat-index.html',
+        chunks:    ['tugboat'],
         template: 'src/index.html',
         favicon: 'src/public/favicon.ico',
       }),

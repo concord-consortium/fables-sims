@@ -1,0 +1,34 @@
+
+.chrome {
+  background-color: #016082;
+  color: white;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3/2;
+  padding: 1em;
+  .toolbar {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start
+  }
+  > div {
+    margin: 5px 10px;
+  }
+
+}
+
+.stage-container {
+  border-radius: 20px;
+  background-color:white;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.tool-label {
+  align-self: flex-start;
+}

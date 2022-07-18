@@ -3,8 +3,6 @@ import { FigureNoForce } from "./image-components/figure-no-force";
 import { FigureMediumForce } from "./image-components/figure-medium-force";
 import { FigureStrongForce} from "./image-components/figure-strong-force";
 
-import "./app.scss";
-
 interface FigureProps {
   x: number;
   y: number;

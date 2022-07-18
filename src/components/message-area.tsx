@@ -1,5 +1,5 @@
 import React from "react";
-import { maxFeetPerSecond } from "./sim-stage";
+import { maxFeetPerSecond } from "./cart-stage";
 import "./message-area.scss";
 
 export const CartMessages = {
