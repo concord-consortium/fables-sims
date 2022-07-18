@@ -1,23 +1,24 @@
 import React from "react";
+import { maxFeetPerSecond } from "./sim-stage";
 
 import "./velocity-panel.scss";
 
 interface VelocityPanelProps {
   velocity: number;
+  show: boolean;
   label?: string;
 }
 
 export const VelocityPanel: React.FC<VelocityPanelProps> = (props:VelocityPanelProps) => {
 
-  const {velocity, label } = props;
-  const labelString = label || "feet per second";
-  const maxVelocity = 6;
-  const maxBoxWidth = 60;
+  const {velocity, label, show } = props;
+  const labelString = label || "feet per second";  const maxBoxWidth = 60;
   const maxBoxHeight = 10;
-  const realV = velocity * maxVelocity;
+  const realV = velocity * maxFeetPerSecond;
+  const className = show ? "velocity-panel" : "velocity-panel hidden";
 
   return (
-    <div className="velocity-panel">
+    <div className={className}>
       <div className="label">
         {(realV).toFixed(2)} {labelString}
       </div>

@@ -13,12 +13,24 @@ import { IconBack } from "./icons/icon-back";
 import useAnimationFrame from "../hooks/useAnimationFrame";
 import { VelocityPanel } from "./velocity-panel";
 import { FigureNoForce } from "./image-components/figure-no-force";
+import { MessageArea } from "./message-area";
 
 interface SimStageProps {
   sceneWidth: number;
   aspectRatio: number;
   children?: React.ReactNode
 }
+
+export const maxFeetPerSecond = 6;
+const maxLocation = 63;
+const initialVelocity = 1;
+const initialPosition = -40;
+const initialFigurePosition = 1;
+const epsilon = 0.0001;
+const frictionOnly = 0.01;
+const mediumForce = 0.4;
+const strongForce = 0.7;
+const figureArmLength = 14;
 
 export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
 
@@ -29,10 +41,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
   const height = width / aspectRatio;
   const scale = theWidth / sceneWidth;
 
-  const maxLocation = 63;
-  const initialVelocity = 1;
-  const initialPosition = -40;
-  const initialFigurePosition = 1;
+
   const [force, setForce] = useState<ForceSelection>(null);
   const [cartLocation, setCartLocation] = useState(initialPosition);
   const [figureLocation, setFigureLocation] = useState(initialFigurePosition);
@@ -42,11 +51,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
 
   // Don't feel bad about changing these numbers this simulation doesn't
   // use real units and mass is ignored. Just choose values that look right.
-  const epsilon = 0.0001;
-  const frictionOnly = 0.01;
-  const mediumForce = 0.4;
-  const strongForce = 0.7;
-  const figureArmLength = 14;
+
   let deltaV = 0;
   const incrementLocation = (args: {time: number, delta:number}) => {
     const { delta } = args;
@@ -106,9 +111,10 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
 
   useAnimationFrame(incrementLocation);
 
+  const showVelocity = status !== "start" || playing;
   return (
     <div className="chrome">
-      <VelocityPanel velocity={cartVelocity}/>
+      <VelocityPanel velocity={cartVelocity} show={showVelocity}/>
       <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
           width={width}
@@ -135,6 +141,7 @@ export const SimStage: React.FC<SimStageProps> = (props:SimStageProps) => {
             <PlayIcon/>
           </IconBack>
         </div>
+        <MessageArea messageType={status} speed={cartVelocity}/>
       </div>
     </div>
   );

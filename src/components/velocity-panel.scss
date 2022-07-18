@@ -10,13 +10,18 @@
   margin-left: 25px;
   justify-self: flex-start;
   align-self: flex-start;
+
+  &.hidden {
+    opacity: 0;
+  }
+
   .label {
     margin-right: 10px;
     font-family: monospace;
-    font-size: 12pt;
+    font-size: 2vw;
   }
   svg {
-    height: 20px;
+    height: 3vw;
     rect.bar {
       fill: #EA6D2F;
     }
