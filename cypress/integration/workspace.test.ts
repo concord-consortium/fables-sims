@@ -1,6 +1,6 @@
 context("Test the overall app", () => {
   beforeEach(() => {
-    cy.visit("");
+    cy.visit("/cart-index.html");
   });
 
   describe("Desktop functionalities", () => {
