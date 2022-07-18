@@ -42,7 +42,7 @@
     "lint:fix": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx}\" \"./cypress/**/*.{js,jsx,ts,tsx}\"",
     "lint:style": "eslint -c \".eslintrc.style.js\" \"./src/**/*.{js,jsx,ts,tsx}\" \"./cypress/**/*.{js,jsx,ts,tsx}\"",
     "lint:style:fix": "eslint -c \".eslintrc.style.js\" \"./src/**/*.{js,jsx,ts,tsx}\" \"./cypress/**/*.{js,jsx,ts,tsx}\"",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:all": "npm-run-all build test start",
     "test:coverage": "jest --coverage",
     "test:debug": "node --nolazy --inspect-brk ./node_modules/.bin/jest --runInBand --no-cache",
