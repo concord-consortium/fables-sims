@@ -8,7 +8,7 @@ import { Cart } from "./image-components/cart";
 import { PlayIcon } from "./icons/play-icon";
 import { Bam } from "./image-components/bam";
 
-import "./cart-stage.scss";
+import "./stage.scss";
 import { IconBack } from "./icons/icon-back";
 import useAnimationFrame from "../hooks/useAnimationFrame";
 import { VelocityPanel } from "./velocity-panel";

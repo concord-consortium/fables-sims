@@ -5,6 +5,8 @@ import img from "../../assets/churn-sheet.png";
 export interface WaterChurnProps {
   x: number;
   y: number;
+  play: boolean;
+  rotation: number;
 }
 
 const animationLength = 40;
@@ -18,10 +20,11 @@ for (let index = 0; index < animationLength; index++) {
 }
 const animations = {idle: frames};
 export const WaterChurn = (props: WaterChurnProps) => {
-  const { x, y } = props;
+  const { x, y, play, rotation } = props;
   const [imageTag, setImageTag] = useState<HTMLImageElement|null>(null);
 
-  const spriteRef = useRef<any>();
+  const spriteRefA = useRef<any>();
+  const spriteRefB = useRef<any>();
 
   useEffect(() => {
     const image = new window.Image();
@@ -29,23 +32,42 @@ export const WaterChurn = (props: WaterChurnProps) => {
     image.onload = () => {
       // set image only when it is loaded
       setImageTag(image);
-      spriteRef?.current?.start();
+      if(play) {
+        spriteRefA?.current?.start();
+        spriteRefB?.current?.start();
+      }
     };
   });
 
   return (
-    <Sprite
-      ref={spriteRef}
-      image={imageTag!}
-      animation="idle"
-      frameRate={7}
-      frameIndex={0}
-      animations={animations}
-      x={x}
-      y={y}
-      rotation={90}
-      scale={{x: 0.04, y: 0.04}}
-    />
+    <>
+      <Sprite
+        offset={{x: 100, y:100}}
+        ref={spriteRefA}
+        image={imageTag!}
+        animation="idle"
+        frameRate={20}
+        frameIndex={0}
+        animations={animations}
+        x={x}
+        y={y}
+        rotation={rotation}
+        scale={{x: 0.04, y: 0.04}}
+      />
+      <Sprite
+        offset={{x: 100, y:100}}
+        ref={spriteRefB}
+        image={imageTag!}
+        animation="idle"
+        frameRate={20}
+        frameIndex={20}
+        animations={animations}
+        x={x}
+        y={y}
+        rotation={rotation}
+        scale={{x: 0.04, y: 0.04}}
+      />
+    </>
     // <Image x={ x } y={y} scale={{x: 0.04, y:0.04}} image={imageTag!} />
   );
 };

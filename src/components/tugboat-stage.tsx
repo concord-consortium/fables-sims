@@ -5,14 +5,11 @@ import { BoatGround } from "./image-components/boat-background";
 import { CargoBoat } from "./image-components/cargo-boat";
 import { PlayIcon } from "./icons/play-icon";
 
-import "./tugboat-stage.scss";
+import "./stage.scss";
 import { IconBack } from "./icons/icon-back";
 // import useAnimationFrame from "../hooks/useAnimationFrame";
 import { MessageArea } from "./message-area";
-import { TugboatChoices } from "./image-components/tugboat-choices";
-import { TugboatSlot } from "./image-components/tugboat-slot";
-import { WaterChurn } from "./image-components/water-churn";
-import { TugboatBottom } from "./image-components/tugboat-top";
+
 
 interface TugboatStageProps {
   sceneWidth: number;
@@ -62,12 +59,7 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
           >
             <Layer>
               <BoatGround x={0} y={0} />
-              <CargoBoat x={2} y={20} />
-              <TugboatSlot x={10} y={6} boat="small"/>
-              <TugboatSlot x={10} y={30} boat="small" />
-              <TugboatChoices x={45} y={10} />
-              <WaterChurn x={26} y={0} />
-              <TugboatBottom x={20} y={7} />
+              <CargoBoat x={20} y={25} topBoat="big" bottomBoat="big"/>
             </Layer>
         </Stage>
       </div>

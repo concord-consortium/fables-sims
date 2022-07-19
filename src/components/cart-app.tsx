@@ -1,7 +1,7 @@
 import React from "react";
 import { CartStage } from "./cart-stage";
 
-import "./cart-app.scss";
+import "./app.scss";
 
 export const CartApp = () => {
   return (

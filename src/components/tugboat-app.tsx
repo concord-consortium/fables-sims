@@ -1,7 +1,7 @@
 import React from "react";
 import { TugboatStage } from "./tugboat-stage";
 
-import "./tugboat-app.scss";
+import "./app.scss";
 
 export const TugboatApp = () => {
   return (
