@@ -19,33 +19,58 @@ interface TugboatStageProps {
 
 export const maxFeetPerSecond = 6;
 
+type boatType = undefined|"big"|"small";
+
+export interface ISetBoatType {
+  boatType: boatType;
+  location: "top" | "bottom"
+}
+
 export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProps) => {
 
   const {sceneWidth, aspectRatio } = props;
   const [stageRef, { width}] = useElementSize();
-
+  const [topBoat, setTopBoat]= useState<boatType>(undefined);
+  const [bottomBoat, setBottomBoat]= useState<boatType>(undefined);
   const theWidth = (width||10);
   const height = width / aspectRatio;
   const scale = theWidth / sceneWidth;
 
   const [playing, setPlaying] = useState(false);
+
+  const setBoat = (args: ISetBoatType) => {
+    const {location, boatType} = args;
+    switch (location) {
+      case "top":
+        setTopBoat(boatType);
+        break;
+      case "bottom":
+        setBottomBoat(boatType);
+        break;
+      default:
+        break;
+    }
+  };
+
   // const [status, setStatus] = useState<"start"|"left"|"center"|"right">("start");
 
   // Don't feel bad about changing these numbers this simulation doesn't
   // use real units and mass is ignored. Just choose values that look right.
 
-  // const reset = () => {
-  //   setStatus("start");
-  // };
-
-  const togglePlay = () => {
-    if(playing) {
-      setPlaying(false);
-    } else {
-      // reset();
-      setPlaying(true);
-    }
+  const reset = () => {
+    setTopBoat(undefined);
+    setBottomBoat(undefined);
+    setPlaying(false);
   };
+
+  // const togglePlay = () => {
+  //   if(playing) {
+  //     setPlaying(false);
+  //   } else {
+  //     // reset();
+  //     setPlaying(true);
+  //   }
+  // };
 
 
   // useAnimationFrame(incrementLocation);
@@ -59,13 +84,23 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
           >
             <Layer>
               <BoatGround x={0} y={0} />
-              <CargoBoat x={20} y={25} topBoat="big" bottomBoat="big"/>
+              <CargoBoat
+                x={20}
+                y={25}
+                topBoat={topBoat}
+                bottomBoat={bottomBoat}
+                switchBoat={setBoat}
+              />
             </Layer>
         </Stage>
       </div>
       <div className="toolbar">
         <div>
-          <IconBack name="Play" selected={!playing} handleSelect={!playing ? togglePlay : undefined}>
+          <IconBack
+            name="Play"
+            selected={!playing}
+            handleSelect={reset}
+          >
             <PlayIcon/>
           </IconBack>
         </div>
