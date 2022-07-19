@@ -43,6 +43,7 @@ export const WaterChurn = (props: WaterChurnProps) => {
       animations={animations}
       x={x}
       y={y}
+      rotation={90}
       scale={{x: 0.04, y: 0.04}}
     />
     // <Image x={ x } y={y} scale={{x: 0.04, y:0.04}} image={imageTag!} />

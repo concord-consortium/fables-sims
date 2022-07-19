@@ -12,6 +12,7 @@ import { MessageArea } from "./message-area";
 import { TugboatChoices } from "./image-components/tugboat-choices";
 import { TugboatSlot } from "./image-components/tugboat-slot";
 import { WaterChurn } from "./image-components/water-churn";
+import { TugboatBottom } from "./image-components/tugboat-top";
 
 interface TugboatStageProps {
   sceneWidth: number;
@@ -65,7 +66,8 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
               <TugboatSlot x={10} y={6} boat="small"/>
               <TugboatSlot x={10} y={30} boat="small" />
               <TugboatChoices x={45} y={10} />
-              <WaterChurn x={3} y={4} />
+              <WaterChurn x={26} y={0} />
+              <TugboatBottom x={20} y={7} />
             </Layer>
         </Stage>
       </div>
