@@ -11,6 +11,7 @@ import { IconBack } from "./icons/icon-back";
 import { MessageArea } from "./message-area";
 import { TugboatChoices } from "./image-components/tugboat-choices";
 import { TugboatSlot } from "./image-components/tugboat-slot";
+import { WaterChurn } from "./image-components/water-churn";
 
 interface TugboatStageProps {
   sceneWidth: number;
@@ -30,20 +31,20 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
   const scale = theWidth / sceneWidth;
 
   const [playing, setPlaying] = useState(false);
-  const [status, setStatus] = useState<"start"|"left"|"center"|"right">("start");
+  // const [status, setStatus] = useState<"start"|"left"|"center"|"right">("start");
 
   // Don't feel bad about changing these numbers this simulation doesn't
   // use real units and mass is ignored. Just choose values that look right.
 
-  const reset = () => {
-    setStatus("start");
-  };
+  // const reset = () => {
+  //   setStatus("start");
+  // };
 
   const togglePlay = () => {
     if(playing) {
       setPlaying(false);
     } else {
-      reset();
+      // reset();
       setPlaying(true);
     }
   };
@@ -64,6 +65,7 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
               <TugboatSlot x={10} y={6} boat="small"/>
               <TugboatSlot x={10} y={30} boat="small" />
               <TugboatChoices x={45} y={10} />
+              <WaterChurn x={3} y={4} />
             </Layer>
         </Stage>
       </div>

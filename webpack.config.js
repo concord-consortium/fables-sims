@@ -145,6 +145,12 @@ module.exports = (env, argv) => {
         template: 'src/index.html',
         favicon: 'src/public/favicon.ico',
       }),
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        chunks: [],
+        template: 'src/root-index.html',
+        favicon: 'src/public/favicon.ico',
+      }),
       new CleanWebpackPlugin(),
     ]
   };
