@@ -23,7 +23,7 @@ module.exports = (env, argv) => {
     devtool: devMode ? 'eval-cheap-module-source-map' : 'source-map',
     entry: {
       cart: './src/cart-index.tsx',
-      tugboat: './src/tugBoat-index.tsx',
+      tugboat: './src/tugboat-index.tsx',
     },
     mode: 'development',
     output: {
