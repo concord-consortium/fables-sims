@@ -6,9 +6,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  aspect-ratio: 3/2;
+  justify-content: flex-start;
   padding: 1em;
+  max-width: 1024px;
+  height: 100vh;
   .toolbar {
     align-self: stretch;
     display: flex;
@@ -24,6 +25,7 @@
 
 .stage-container {
   border-radius: 20px;
+  aspect-ratio: 2/1;
   background-color:white;
   box-sizing: border-box;
   align-self: stretch;
