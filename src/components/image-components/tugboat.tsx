@@ -22,19 +22,21 @@ export const Tugboat = (props: Props) => {
   const waterRotation = orientation === "bottom" ? -90 : 90;
   const [image] = useImage(imageSource);
 
-  const boatScale = size === "big" ? 0.05 : 0.04;
+  const boatScale = size === "big" ? 1 : 0.7;
   const tugScale = {x: boatScale, y: boatScale};
   const waterOffsetY = orientation === "bottom"
     ? imageHeight * boatScale - 1
     : (imageHeight * boatScale) * -1 + 1;
   return (
-    <Group>
-      <WaterChurn x={x} y={y+waterOffsetY} play={true} rotation={waterRotation}/>
+    <Group x={x} y={y} scale={tugScale}>
+      <WaterChurn
+        x={0}
+        y={waterOffsetY}
+        play={true}
+        rotation={waterRotation}
+      />
       <Image
-        x={x}
-        y={y}
         offset={{x: imageWidth/2, y:imageHeight/2}}
-        scale={tugScale}
         image={image}
       />
     </Group>

@@ -6,7 +6,8 @@ export interface WaterChurnProps {
   x: number;
   y: number;
   play: boolean;
-  rotation: number;
+  rotation?: number;
+  scale?: number;
 }
 
 const animationLength = 40;
@@ -20,7 +21,7 @@ for (let index = 0; index < animationLength; index++) {
 }
 const animations = {idle: frames};
 export const WaterChurn = (props: WaterChurnProps) => {
-  const { x, y, play, rotation } = props;
+  const { x, y, play, rotation, scale } = props;
   const [imageTag, setImageTag] = useState<HTMLImageElement|null>(null);
 
   const spriteRefA = useRef<any>();
@@ -38,11 +39,12 @@ export const WaterChurn = (props: WaterChurnProps) => {
       }
     };
   });
-
+  // Each frame in the sprite sheet is 200x200
+  const midpoint = {x: 100, y:100};
   return (
     <>
       <Sprite
-        offset={{x: 100, y:100}}
+        offset={midpoint}
         ref={spriteRefA}
         image={imageTag!}
         animation="idle"
@@ -51,11 +53,11 @@ export const WaterChurn = (props: WaterChurnProps) => {
         animations={animations}
         x={x}
         y={y}
-        rotation={rotation}
-        scale={{x: 0.04, y: 0.04}}
+        rotation={rotation||0}
+        scale={{x: scale||1, y: scale||1}}
       />
       <Sprite
-        offset={{x: 100, y:100}}
+        offset={midpoint}
         ref={spriteRefB}
         image={imageTag!}
         animation="idle"
@@ -64,8 +66,8 @@ export const WaterChurn = (props: WaterChurnProps) => {
         animations={animations}
         x={x}
         y={y}
-        rotation={rotation}
-        scale={{x: 0.04, y: 0.04}}
+        rotation={rotation||0}
+        scale={{x: scale||1, y: scale||1}}
       />
     </>
     // <Image x={ x } y={y} scale={{x: 0.04, y:0.04}} image={imageTag!} />
