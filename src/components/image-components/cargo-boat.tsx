@@ -6,7 +6,6 @@ import img from "../../assets/boat-tops/cargo.png";
 import { WaterChurn } from "./water-churn";
 import { TugboatSlot } from "./tugboat-slot";
 import { Tugboat } from "./tugboat";
-import { ISetBoatType } from "../tugboat-stage";
 
 const cargoBoatWidth = 751;
 const cargoHeight = 191;
@@ -16,7 +15,7 @@ export interface CargoBoatProps {
   y: number;
   topBoat?: "big" | "small";
   bottomBoat?: "big" | "small";
-  switchBoat?: (args: ISetBoatType) => void;
+  switchBoat?: (location: "top"|"bottom") => void;
 }
 
 export const CargoBoat = (props: CargoBoatProps) => {
@@ -34,7 +33,7 @@ export const CargoBoat = (props: CargoBoatProps) => {
     <TugboatSlot
       onClick={
         () => switchBoat
-          ? switchBoat({location: "top", boatType:"big"})
+          ? switchBoat("top")
           : null
       }
       x={tugOffsetX}
@@ -46,7 +45,7 @@ export const CargoBoat = (props: CargoBoatProps) => {
       <TugboatSlot
         onClick={
           () => switchBoat
-            ? switchBoat({location: "bottom", boatType:"big"})
+            ? switchBoat("bottom")
             : null
         }
         x={tugOffsetX}

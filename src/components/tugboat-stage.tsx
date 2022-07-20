@@ -10,6 +10,8 @@ import { IconBack } from "./icons/icon-back";
 // import useAnimationFrame from "../hooks/useAnimationFrame";
 import { MessageArea } from "./message-area";
 import useAnimationFrame from "../hooks/useAnimationFrame";
+import { Dialog } from "./dialog";
+import { BoatPicker } from "./boat-picker";
 
 
 interface TugboatStageProps {
@@ -21,20 +23,21 @@ interface TugboatStageProps {
 export const maxFeetPerSecond = 6;
 
 type boatType = undefined|"big"|"small";
-
-export interface ISetBoatType {
+type boatLocation = undefined|"top"|"bottom";
+export interface IBoatEdit {
   boatType: boatType;
-  location: "top" | "bottom"
+  location: boatLocation;
 }
 
 export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProps) => {
-  const boatStartPosition = {x: 20, y:25};
+  const boatStartPosition = {x: 20, y:23};
   const boatXVelocity = 10;
   let boatYVelocity = 0;
   const {sceneWidth, aspectRatio } = props;
   const [stageRef, { width}] = useElementSize();
   const [topBoat, setTopBoat]= useState<boatType>(undefined);
   const [bottomBoat, setBottomBoat]= useState<boatType>(undefined);
+  const [boatEdit, setBoatEdit] = useState<boatLocation>(undefined);
   const [boatPosition, setBoatPosition] = useState(boatStartPosition);
   const theWidth = (width||10);
   const height = width / aspectRatio;
@@ -44,9 +47,12 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
 
   const updatePosition = (args: {time: number, delta: number}) => {
     const {delta} = args;
+    const maxY = 40;
+    const minY = 5;
+    const maxX = 67;
     if (delta === 0) return;
 
-    if(boatPosition.x > 70) {
+    if(boatPosition.x > maxX) {
       if(playing) {
         setPlaying(false);
       }
@@ -57,24 +63,27 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
       const nextPosition = {...boatPosition};
       nextPosition.x += boatXVelocity * delta;
       nextPosition.y += boatYVelocity * delta;
+      if(nextPosition.y > maxY) {
+        nextPosition.y = maxY;
+      }
+      if(nextPosition.y < minY) {
+        nextPosition.y = minY;
+      }
       setBoatPosition(nextPosition);
     }
   };
 
   useAnimationFrame(updatePosition);
 
-
-
   if (topBoat !== bottomBoat) {
     if (topBoat === "big") {
-      boatYVelocity = 1;
+      boatYVelocity = 4;
     } else {
-      boatYVelocity = -1;
+      boatYVelocity = -4;
     }
   }
 
-
-  const setBoat = (args: ISetBoatType) => {
+  const setBoat = (args: IBoatEdit) => {
     const {location, boatType} = args;
     switch (location) {
       case "top":
@@ -109,10 +118,17 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
   };
 
 
+  const dialogContent = boatEdit
+    ? <BoatPicker onSelect={(bigOrSmall) => {
+        setBoat({boatType: bigOrSmall, location: boatEdit});
+        setBoatEdit(undefined);
+    }}/>
+    : undefined;
 
   return (
     <div className="chrome">
       {/* <div>X: {boatPosition.x} | counter: {counter}</div> */}
+      <Dialog nowShowing={dialogContent} />
       <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
           width={width}
@@ -126,7 +142,7 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
                 y={boatPosition.y}
                 topBoat={topBoat}
                 bottomBoat={bottomBoat}
-                switchBoat={setBoat}
+                switchBoat={ (loc) => setBoatEdit(loc)}
               />
             </Layer>
         </Stage>

@@ -1,0 +1,27 @@
+#dialog-background {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #242424;
+  background-color: hsla(0, 0%, 20%, 0.8);
+  z-index: 10;
+  .dialog-content {
+    max-height: 50vh;
+    max-width: 50vw;
+    background-color: #016082;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em;
+    box-shadow: #242424;
+    border-radius: 10px;
+  }
+}
