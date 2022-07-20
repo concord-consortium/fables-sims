@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 type callBack = (args:{time: number, delta: number}) => void;
 
 // Reusable component that also takes dependencies
-export default (cb: callBack) => {
+export default (cb: callBack, minDelta=0.01) => {
   if (typeof performance === "undefined" || typeof window === "undefined") {
     return;
   }
@@ -21,18 +21,25 @@ export default (cb: callBack) => {
   cbRef.current = cb;
 
   const animate = (now:number) => {
+    const time = (now - init.current) / 1000;
+    const delta = (now - last.current) / 1000;
     // In seconds ~> you can do ms or anything in userland
-    if(cbRef.current) {
-      cbRef.current({
-        time: (now - init.current) / 1000,
-        delta: (now - last.current) / 1000,
-      });
+    if(cbRef.current && delta > minDelta) {
+      cbRef.current({time, delta});
+      last.current = now;
     }
-    last.current = now;
     frame.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
     frame.current = requestAnimationFrame(animate);
-  });
+    return () => {
+      console.log("unmounting");
+      if(frame.current) {
+        console.log("removing animation request", frame.current);
+        cancelAnimationFrame(frame.current);
+      }
+    };
+  },[]);
 };
+

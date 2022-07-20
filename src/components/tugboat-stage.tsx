@@ -9,6 +9,7 @@ import "./stage.scss";
 import { IconBack } from "./icons/icon-back";
 // import useAnimationFrame from "../hooks/useAnimationFrame";
 import { MessageArea } from "./message-area";
+import useAnimationFrame from "../hooks/useAnimationFrame";
 
 
 interface TugboatStageProps {
@@ -38,6 +39,41 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
 
   const [playing, setPlaying] = useState(false);
 
+  const updatePosition = (args: {time: number, delta: number}) => {
+    const {delta} = args;
+    if (delta === 0) return;
+
+    if(boatPosition.x > 70) {
+      if(playing) {
+        setPlaying(false);
+      }
+      return;
+    }
+
+    if(playing){
+      const nextPosition = {...boatPosition};
+      nextPosition.x += boatXVelocity * delta;
+      nextPosition.y += boatYVelocity * delta;
+      setBoatPosition(nextPosition);
+    }
+  };
+
+  useAnimationFrame(updatePosition);
+
+  const boatStartPosition = {x: 20, y:25};
+  const boatXVelocity = 10;
+  let boatYVelocity = 0;
+
+  if (topBoat !== bottomBoat) {
+    if (topBoat === "big") {
+      boatYVelocity = 1;
+    } else {
+      boatYVelocity = -1;
+    }
+  }
+
+  const [boatPosition, setBoatPosition] = useState(boatStartPosition);
+
   const setBoat = (args: ISetBoatType) => {
     const {location, boatType} = args;
     switch (location) {
@@ -52,30 +88,31 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
     }
   };
 
-  // const [status, setStatus] = useState<"start"|"left"|"center"|"right">("start");
-
+  const haveBothBoats = (topBoat !== undefined) && (bottomBoat !== undefined);
   // Don't feel bad about changing these numbers this simulation doesn't
   // use real units and mass is ignored. Just choose values that look right.
 
   const reset = () => {
     setTopBoat(undefined);
     setBottomBoat(undefined);
+    setBoatPosition({...boatStartPosition});
     setPlaying(false);
   };
 
-  // const togglePlay = () => {
-  //   if(playing) {
-  //     setPlaying(false);
-  //   } else {
-  //     // reset();
-  //     setPlaying(true);
-  //   }
-  // };
+  const togglePlay = () => {
+    if(playing) {
+      setPlaying(false);
+      reset();
+    } else {
+      setPlaying(true);
+    }
+  };
 
 
-  // useAnimationFrame(incrementLocation);
+
   return (
     <div className="chrome">
+      {/* <div>X: {boatPosition.x} | counter: {counter}</div> */}
       <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
           width={width}
@@ -85,8 +122,8 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
             <Layer>
               <BoatGround x={0} y={0} />
               <CargoBoat
-                x={20}
-                y={25}
+                x={boatPosition.x}
+                y={boatPosition.y}
                 topBoat={topBoat}
                 bottomBoat={bottomBoat}
                 switchBoat={setBoat}
@@ -98,8 +135,8 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
         <div>
           <IconBack
             name="Play"
-            selected={!playing}
-            handleSelect={reset}
+            selected={!playing && haveBothBoats === true}
+            handleSelect={togglePlay}
           >
             <PlayIcon/>
           </IconBack>
