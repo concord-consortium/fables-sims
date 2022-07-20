@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { Stage, Layer } from "react-konva";
+import useAnimationFrame from "../hooks/useAnimationFrame";
 import { useElementSize } from "../hooks/useElementSize";
+
 import { BoatGround } from "./image-components/boat-background";
 import { CargoBoat } from "./image-components/cargo-boat";
 import { PlayIcon } from "./icons/play-icon";
-
-import "./stage.scss";
 import { IconBack } from "./icons/icon-back";
-// import useAnimationFrame from "../hooks/useAnimationFrame";
+
 import { MessageArea } from "./message-area";
-import useAnimationFrame from "../hooks/useAnimationFrame";
 import { Dialog } from "./dialog";
 import { BoatPicker } from "./boat-picker";
+import { BoatLocation, BoatType } from "../types";
 
+import "./stage.scss";
 
 interface TugboatStageProps {
   sceneWidth: number;
@@ -22,22 +23,24 @@ interface TugboatStageProps {
 
 export const maxFeetPerSecond = 6;
 
-type boatType = undefined|"big"|"small";
-type boatLocation = undefined|"top"|"bottom";
 export interface IBoatEdit {
-  boatType: boatType;
-  location: boatLocation;
+  boatType: BoatType;
+  location: BoatLocation;
 }
 
 export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProps) => {
   const boatStartPosition = {x: 20, y:23};
   const boatXVelocity = 10;
+  const maxY = 40;
+  const minY = 5;
+  const maxX = 67;
+
   let boatYVelocity = 0;
   const {sceneWidth, aspectRatio } = props;
   const [stageRef, { width}] = useElementSize();
-  const [topBoat, setTopBoat]= useState<boatType>(undefined);
-  const [bottomBoat, setBottomBoat]= useState<boatType>(undefined);
-  const [boatEdit, setBoatEdit] = useState<boatLocation>(undefined);
+  const [topBoat, setTopBoat]= useState<BoatType>(undefined);
+  const [bottomBoat, setBottomBoat]= useState<BoatType>(undefined);
+  const [boatEdit, setBoatEdit] = useState<BoatLocation>(undefined);
   const [boatPosition, setBoatPosition] = useState(boatStartPosition);
   const theWidth = (width||10);
   const height = width / aspectRatio;
@@ -45,14 +48,14 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
 
   const [playing, setPlaying] = useState(false);
 
+  const reachedEnd = boatPosition.x > maxX;
+
   const updatePosition = (args: {time: number, delta: number}) => {
     const {delta} = args;
-    const maxY = 40;
-    const minY = 5;
-    const maxX = 67;
+
     if (delta === 0) return;
 
-    if(boatPosition.x > maxX) {
+    if(reachedEnd) {
       if(playing) {
         setPlaying(false);
       }
@@ -98,8 +101,7 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
   };
 
   const haveBothBoats = (topBoat !== undefined) && (bottomBoat !== undefined);
-  // Don't feel bad about changing these numbers this simulation doesn't
-  // use real units and mass is ignored. Just choose values that look right.
+  const playEnabled = !playing && haveBothBoats === true;
 
   const reset = () => {
     setTopBoat(undefined);
@@ -109,11 +111,12 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
   };
 
   const togglePlay = () => {
-    if(playing) {
-      setPlaying(false);
-      reset();
-    } else {
-      setPlaying(true);
+    if(playEnabled) {
+      if(reachedEnd) {
+        reset();
+      } else {
+        setPlaying(true);
+      }
     }
   };
 
@@ -142,6 +145,7 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
                 y={boatPosition.y}
                 topBoat={topBoat}
                 bottomBoat={bottomBoat}
+                moving={playing}
                 switchBoat={ (loc) => setBoatEdit(loc)}
               />
             </Layer>

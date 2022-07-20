@@ -12,12 +12,13 @@ const imageHeight = 200;
 export interface Props {
   x: number;
   y: number;
+  moving: boolean;
   orientation: "top" | "bottom";
   size: "big" | "small";
 }
 
 export const Tugboat = (props: Props) => {
-  const { x, y, orientation, size } = props;
+  const { x, y, orientation, size, moving } = props;
   const imageSource = orientation === "bottom" ? bottomImg : topImg;
   const waterRotation = orientation === "bottom" ? -90 : 90;
   const [image] = useImage(imageSource);
@@ -29,12 +30,14 @@ export const Tugboat = (props: Props) => {
     : (imageHeight * boatScale) * -1 + 1;
   return (
     <Group x={x} y={y} scale={tugScale}>
-      <WaterChurn
-        x={0}
-        y={waterOffsetY}
-        play={true}
-        rotation={waterRotation}
-      />
+      { moving &&
+        <WaterChurn
+          x={0}
+          y={waterOffsetY}
+          play={true}
+          rotation={waterRotation}
+        />
+      }
       <Image
         offset={{x: imageWidth/2, y:imageHeight/2}}
         image={image}

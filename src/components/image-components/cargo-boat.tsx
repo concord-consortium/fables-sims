@@ -7,19 +7,22 @@ import { WaterChurn } from "./water-churn";
 import { TugboatSlot } from "./tugboat-slot";
 import { Tugboat } from "./tugboat";
 
+import { BoatLocation, BoatType } from "../../types";
+
 const cargoBoatWidth = 751;
 const cargoHeight = 191;
 
 export interface CargoBoatProps {
   x: number;
   y: number;
-  topBoat?: "big" | "small";
-  bottomBoat?: "big" | "small";
-  switchBoat?: (location: "top"|"bottom") => void;
+  moving: boolean;
+  topBoat?: BoatType;
+  bottomBoat?: BoatType;
+  switchBoat?: (location: BoatLocation) => void;
 }
 
 export const CargoBoat = (props: CargoBoatProps) => {
-  const { x, y, topBoat, bottomBoat, switchBoat } = props;
+  const { x, y, topBoat, bottomBoat, switchBoat, moving } = props;
   const [image] = useImage(img);
 
   const scale = 0.04;
@@ -54,21 +57,21 @@ export const CargoBoat = (props: CargoBoatProps) => {
       />;
 
   if(topBoat === "big") {
-    topGraphic = <Tugboat x={tugOffsetX} y={-bigYOffset} orientation="top" size="big"/>;
+    topGraphic = <Tugboat x={tugOffsetX} y={-bigYOffset} moving={moving} orientation="top" size="big"/>;
   }
   if(topBoat === "small") {
-    topGraphic = <Tugboat x={tugOffsetX} y={-smallYOffset} orientation="top" size="small"/>;
+    topGraphic = <Tugboat x={tugOffsetX} y={-smallYOffset} moving={moving} orientation="top" size="small"/>;
   }
   if(bottomBoat === "big") {
-    bottomGraphic = <Tugboat x={bottomOffsetX} y={bigYOffset} orientation="bottom" size="big"/>;
+    bottomGraphic = <Tugboat x={bottomOffsetX} y={bigYOffset} moving={moving} orientation="bottom" size="big"/>;
   }
   if(bottomBoat === "small") {
-    bottomGraphic = <Tugboat x={bottomOffsetX} y={smallYOffset} orientation="bottom" size="small"/>;
+    bottomGraphic = <Tugboat x={bottomOffsetX} y={smallYOffset} moving={moving} orientation="bottom" size="small"/>;
   }
 
   return (
     <Group x={x} y={y} scale={{x: scale, y:scale}}>
-      <WaterChurn x={waterOffsetX} y={10} play={true} rotation={0} />
+      { moving && <WaterChurn x={waterOffsetX} y={10} play={true} rotation={0} /> }
       <Image
         offset={{x: cargoBoatWidth/2, y: cargoHeight/2}}
         image={image}
