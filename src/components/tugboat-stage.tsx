@@ -28,11 +28,14 @@ export interface ISetBoatType {
 }
 
 export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProps) => {
-
+  const boatStartPosition = {x: 20, y:25};
+  const boatXVelocity = 10;
+  let boatYVelocity = 0;
   const {sceneWidth, aspectRatio } = props;
   const [stageRef, { width}] = useElementSize();
   const [topBoat, setTopBoat]= useState<boatType>(undefined);
   const [bottomBoat, setBottomBoat]= useState<boatType>(undefined);
+  const [boatPosition, setBoatPosition] = useState(boatStartPosition);
   const theWidth = (width||10);
   const height = width / aspectRatio;
   const scale = theWidth / sceneWidth;
@@ -60,9 +63,7 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
 
   useAnimationFrame(updatePosition);
 
-  const boatStartPosition = {x: 20, y:25};
-  const boatXVelocity = 10;
-  let boatYVelocity = 0;
+
 
   if (topBoat !== bottomBoat) {
     if (topBoat === "big") {
@@ -72,7 +73,6 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
     }
   }
 
-  const [boatPosition, setBoatPosition] = useState(boatStartPosition);
 
   const setBoat = (args: ISetBoatType) => {
     const {location, boatType} = args;

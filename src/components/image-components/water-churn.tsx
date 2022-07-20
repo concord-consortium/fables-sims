@@ -48,7 +48,7 @@ export const WaterChurn = (props: WaterChurnProps) => {
         ref={spriteRefA}
         image={imageTag!}
         animation="idle"
-        frameRate={5}
+        frameRate={20}
         frameIndex={0}
         animations={animations}
         x={x}
@@ -61,7 +61,7 @@ export const WaterChurn = (props: WaterChurnProps) => {
         ref={spriteRefB}
         image={imageTag!}
         animation="idle"
-        frameRate={5}
+        frameRate={20}
         frameIndex={20}
         animations={animations}
         x={x}

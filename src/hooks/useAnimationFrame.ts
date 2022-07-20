@@ -34,12 +34,11 @@ export default (cb: callBack, minDelta=0.01) => {
   useEffect(() => {
     frame.current = requestAnimationFrame(animate);
     return () => {
-      console.log("unmounting");
       if(frame.current) {
-        console.log("removing animation request", frame.current);
         cancelAnimationFrame(frame.current);
       }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 };
 
