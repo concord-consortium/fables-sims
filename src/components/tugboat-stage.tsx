@@ -14,6 +14,7 @@ import { BoatPicker } from "./boat-picker";
 import { BoatLocation, BoatType } from "../types";
 
 import "./stage.scss";
+import { ResetIcon } from "./icons/reset";
 
 interface TugboatStageProps {
   sceneWidth: number;
@@ -154,11 +155,11 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
       <div className="toolbar">
         <div>
           <IconBack
-            name="Play"
+            name={reachedEnd ? "reset" : "play"}
             selected={!playing && haveBothBoats === true}
             handleSelect={togglePlay}
           >
-            <PlayIcon/>
+            { reachedEnd ? <ResetIcon /> : <PlayIcon/> }
           </IconBack>
         </div>
         <MessageArea messageType="start" speed={1}/>
