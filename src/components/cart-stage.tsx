@@ -7,13 +7,16 @@ import { Car } from "./image-components/car";
 import { Cart } from "./image-components/cart";
 import { PlayIcon } from "./icons/play-icon";
 import { Bam } from "./image-components/bam";
+import t from "../utils/translation/translate";
 
 import "./stage.scss";
 import { IconBack } from "./icons/icon-back";
 import useAnimationFrame from "../hooks/useAnimationFrame";
-import { VelocityPanel } from "./velocity-panel";
+
 import { FigureNoForce } from "./image-components/figure-no-force";
 import { MessageArea } from "./message-area";
+import { CartStatus } from "../types";
+import { MeterPanel } from "./icons/meter-panel";
 
 interface CartStageProps {
   sceneWidth: number;
@@ -47,7 +50,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
   const [figureLocation, setFigureLocation] = useState(initialFigurePosition);
   const [cartVelocity, setCartVelocity] = useState(initialVelocity);
   const [playing, setPlaying] = useState(false);
-  const [status, setStatus] = useState<"failure"|"success"|"start">("start");
+  const [status, setStatus] = useState<CartStatus>("CART.START");
 
   // Don't feel bad about changing these numbers this simulation doesn't
   // use real units and mass is ignored. Just choose values that look right.
@@ -73,7 +76,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
         if(cartVelocity < epsilon) {
           setCartVelocity(0);
           setPlaying(false);
-          setStatus("success");
+          setStatus("CART.SUCCESS");
         }
       }
       setCartLocation(cartLocation + (cartVelocity * delta * 60));
@@ -83,7 +86,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
       if(cartLocation > maxLocation) {
         // TODO display final state
         setPlaying(false);
-        setStatus("failure");
+        setStatus("CART.FAIL");
       }
     }
   };
@@ -92,7 +95,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
     setCartLocation(initialPosition);
     setCartVelocity(initialVelocity);
     setFigureLocation(initialFigurePosition);
-    setStatus("start");
+    setStatus("CART.START");
   };
 
   const togglePlay = () => {
@@ -111,10 +114,11 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
 
   useAnimationFrame(incrementLocation);
 
-  const showVelocity = status !== "start" || playing;
+  // const showVelocity = status !== "CART.START" || playing;
   return (
     <div className="chrome">
-      <VelocityPanel velocity={cartVelocity} show={showVelocity}/>
+      {/* <VelocityPanel velocity={cartVelocity} show={showVelocity}/> */}
+      <MeterPanel speed={cartVelocity} size={"10em"} />
       <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
           width={width}
@@ -129,15 +133,15 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
               }
               <Cart x={cartLocation} y={25}/>
               <Car x={85} y={23}/>
-              {(status === "failure") && <Bam x={71} y={22}/>}
+              {(status === "CART.FAIL") && <Bam x={71} y={22}/>}
             </Layer>
         </Stage>
       </div>
-      <div className="tool-label">Pulling Force:</div>
+      <div className="tool-label">{t("CART.PULLING-FORCE")}:</div>
       <div className="toolbar">
         <ForceSelector selected={null} onChange={selectForce}/>
         <div>
-          <IconBack name="Play" selected={!playing} handleSelect={!playing ? togglePlay : undefined}>
+          <IconBack name={t("PLAY")} selected={!playing} handleSelect={!playing ? togglePlay : undefined}>
             <PlayIcon/>
           </IconBack>
         </div>

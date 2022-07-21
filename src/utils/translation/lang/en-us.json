@@ -1,4 +1,21 @@
 {
-  "TEXT": "text",
-  "INTRO.HELLO": "Hello World"
+  "BOAT.START": " ",
+
+  "CART.FAIL": "Bam! The cart crashed into the car at %SPEED% feet per second.",
+
+  "CART.MEDIUM": "medium",
+  "CART.NONE": "none",
+  "CART.PULLING-FORCE": "Pulling force on cart",
+
+  "CART.ZERO": "Zero",
+  "CART.SLOW": "Slow",
+  "CART.FAST": "Fast",
+
+  "CART.START": " ",
+  "CART.IDLE": " ",
+  "CART.STRONG": "strong",
+  "CART.SUCCESS": "Good job! You stopped the cart.",
+
+  "PLAY": "Play",
+  "RESET": "Reset"
 }

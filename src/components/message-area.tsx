@@ -1,21 +1,19 @@
 import React from "react";
+import { StatusMessage } from "../types";
 import { maxFeetPerSecond } from "./cart-stage";
+import t from "../utils/translation/translate";
+
 import "./message-area.scss";
 
-export const CartMessages = {
-  start: "",
-  success: "Good job! You stopped the cart.",
-  failure: "Bam! The cart crashed into car at %SPEED% feet per second."
-};
 
 interface MessageAreaProps {
-  messageType: "start" | "success" | "failure"
+  messageType: StatusMessage;
   speed: number;
 }
 
 export const MessageArea: React.FC<MessageAreaProps> = (props:MessageAreaProps) => {
   const { messageType, speed } = props;
-  const message: string = CartMessages[messageType];
+  const message: string = t(messageType);
   const feetPerSecond = (maxFeetPerSecond * speed).toFixed(2);
   const formattedMessage = message.replace("%SPEED%", feetPerSecond);
   return (

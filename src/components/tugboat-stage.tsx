@@ -162,7 +162,7 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
             { reachedEnd ? <ResetIcon /> : <PlayIcon/> }
           </IconBack>
         </div>
-        <MessageArea messageType="start" speed={1}/>
+        <MessageArea messageType="BOAT.START" speed={1}/>
       </div>
     </div>
   );
