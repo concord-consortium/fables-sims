@@ -76,7 +76,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
           setStatus("success");
         }
       }
-      setCartLocation(cartLocation + cartVelocity);
+      setCartLocation(cartLocation + (cartVelocity * delta * 60));
       if(force === "medium" || force === "strong") {
         setFigureLocation(Math.max(cartLocation - figureArmLength, initialFigurePosition));
       }
