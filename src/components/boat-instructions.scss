@@ -1,0 +1,41 @@
+button.boat-instructions {
+  display: flex;
+  background-color: inherit;
+  color: white;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  .left-image {
+    // overflow: hidden;
+    border-radius: 2rem;
+    flex-basis: 3;
+    img { border-radius: 1rem;}
+
+  }
+  .instructions {
+    flex-basis:1;
+    margin: 2rem;
+    font-size: 1.3rem;
+    line-height: 2rem;
+  }
+
+  button.dismiss {
+    border-radius: 0.5rem;
+    font-size: 1.3rem;
+    box-shadow: none;
+    border: none;
+    padding: 0.4rem 5rem;
+    margin-top: 1.5rem;
+    background-color: white;
+    color: #016082;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+      box-shadow: 4px 4px 4px 4px hsla(0, 0%, 0%, 0.2);
+    }
+  }
+}

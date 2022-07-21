@@ -12,6 +12,7 @@ import { MessageArea } from "./message-area";
 import { Dialog } from "./dialog";
 import { BoatPicker } from "./boat-picker";
 import { BoatLocation, BoatType } from "../types";
+import { BoatInstructions } from "./boat-instructions";
 
 import "./stage.scss";
 import { ResetIcon } from "./icons/reset";
@@ -43,6 +44,7 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
   const [bottomBoat, setBottomBoat]= useState<BoatType>(undefined);
   const [boatEdit, setBoatEdit] = useState<BoatLocation>(undefined);
   const [boatPosition, setBoatPosition] = useState(boatStartPosition);
+  const [seenInstructions, setSeenInstructions] = useState(false);
   const theWidth = (width||10);
   const height = width / aspectRatio;
   const scale = theWidth / sceneWidth;
@@ -122,12 +124,16 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
   };
 
 
-  const dialogContent = boatEdit
+  let dialogContent = boatEdit
     ? <BoatPicker onSelect={(bigOrSmall) => {
         setBoat({boatType: bigOrSmall, location: boatEdit});
         setBoatEdit(undefined);
     }}/>
     : undefined;
+
+  if (!seenInstructions) {
+    dialogContent = <BoatInstructions onClick={()=> setSeenInstructions(true)} />;
+  }
 
   return (
     <div className="chrome">

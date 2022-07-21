@@ -34,6 +34,7 @@ export const CargoBoat = (props: CargoBoatProps) => {
 
   let topGraphic =
     <TugboatSlot
+
       onClick={
         () => switchBoat
           ? switchBoat("top")

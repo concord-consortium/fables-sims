@@ -1,5 +1,6 @@
 {
   "BOAT.START": " ",
+  "BOAT.INSTRUCTIONS": "Click on the rectanges, and choose a tugboat to push on each side of the ship.",
 
   "CART.FAIL": "Bam! The cart crashed into the car.",
   "CART.FAIL-FAST": "Bam! The cart crashed into the car while moving quickly.",
