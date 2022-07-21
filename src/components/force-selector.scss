@@ -1,16 +1,15 @@
 
 .force-selector-wrapper {
+  margin-right: 1rem;
   .label {
     margin-bottom: 5px;
   }
   .force-selector {
-    padding: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     border-radius: 10px;
-    min-height: 30px;
     background-color: #0481A0;
     .buttons {
       div {

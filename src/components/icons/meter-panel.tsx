@@ -7,9 +7,9 @@ import { red, yellow, green } from "../../colors";
 import "./meter-panel.scss";
 
 const colorForSpeed = (speed:number): string => {
-  if(speed > 0.6) return red;
+  if(speed > 0.6) return green;
   if(speed > 0.1) return yellow;
-  return green;
+  return red;
 };
 
 const textForSpeed = (speed: number): string => {

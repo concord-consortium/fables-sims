@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Stage, Layer, Rect } from "react-konva";
 import { useElementSize } from "../hooks/useElementSize";
-import { ForceSelection, ForceSelector } from "./force-selector";
+import { ForceSelector } from "./force-selector";
 import { Figure } from "./figure";
 import { Car } from "./image-components/car";
 import { Cart } from "./image-components/cart";
@@ -9,14 +9,14 @@ import { PlayIcon } from "./icons/play-icon";
 import { Bam } from "./image-components/bam";
 import t from "../utils/translation/translate";
 
-import "./stage.scss";
 import { IconBack } from "./icons/icon-back";
 import useAnimationFrame from "../hooks/useAnimationFrame";
 
 import { MessageArea } from "./message-area";
-import { CartStatus } from "../types";
+import { CartStatus, ForceSelection } from "../types";
 import { MeterPanel } from "./icons/meter-panel";
 
+import "./stage.scss";
 interface CartStageProps {
   sceneWidth: number;
   aspectRatio: number;
@@ -30,8 +30,8 @@ const initialPosition = -40;
 const initialFigurePosition = 1;
 const epsilon = 0.0001;
 const frictionOnly = 0.01;
-const mediumForce = 0.4;
-const strongForce = 0.7;
+const forceSmall = 0.4;
+const forceLarge = 0.7;
 const figureArmLength = 14;
 
 export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
@@ -61,11 +61,11 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
     if(playing) {
       if(cartLocation > figureLocation) {
         switch (force) {
-          case "medium":
-            deltaV = mediumForce * delta;
+          case "CART.FORCE-SMALL":
+            deltaV = forceSmall * delta;
             break;
-          case "strong":
-            deltaV = strongForce * delta;
+          case "CART.FORCE-LARGE":
+            deltaV = forceLarge * delta;
             break;
           default:
             deltaV = frictionOnly * delta;
@@ -79,7 +79,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
         }
       }
       setCartLocation(cartLocation + (cartVelocity * delta * 60));
-      if(force === "medium" || force === "strong") {
+      if(force === "CART.FORCE-SMALL" || force === "CART.FORCE-LARGE") {
         setFigureLocation(Math.max(cartLocation - figureArmLength, initialFigurePosition));
       }
       if(cartLocation > maxLocation) {
@@ -140,7 +140,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
       <div className="tool-label">{t("CART.PULLING-FORCE")}:</div>
       <div className="toolbar">
         <ForceSelector selected={null} onChange={selectForce}/>
-        <div>
+        <div className="play-button">
           <IconBack name={t("PLAY")} selected={!playing} handleSelect={!playing ? togglePlay : undefined}>
             <PlayIcon/>
           </IconBack>

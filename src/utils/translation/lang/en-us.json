@@ -5,8 +5,9 @@
   "CART.FAIL-FAST": "Bam! The cart crashed into the car while moving quickly.",
   "CART.FAIL-SLOW": "Bam! The cart crashed into the car while moving slowly.",
 
-  "CART.MEDIUM": "medium",
-  "CART.NONE": "none",
+  "CART.FORCE-NONE": "none",
+  "CART.FORCE-SMALL": "small",
+  "CART.FORCE-LARGE": "large",
   "CART.PULLING-FORCE": "Pulling force on cart",
 
   "CART.ZERO": "Zero",
@@ -15,8 +16,7 @@
 
   "CART.START": " ",
   "CART.IDLE": " ",
-  "CART.STRONG": "strong",
-  "CART.SUCCESS": "Good job! You stopped the cart.",
+  "CART.SUCCESS": "Success, the cart stopped before it crashed into the car.",
 
   "PLAY": "Play",
   "RESET": "Reset"
