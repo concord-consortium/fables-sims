@@ -1,6 +1,9 @@
 {
   "BOAT.START": " ",
   "BOAT.INSTRUCTIONS": "Click on the rectanges, and choose a tugboat to push on each side of the ship.",
+  "BOAT.FINISH_CENTER": "Congratulations you successfully made it to the center dock.",
+  "BOAT.FINISH_TOP": "Congratulations you successfully made it to the top dock.",
+  "BOAT.FINISH_BOTTOM": "Congratulations you successfully made it to the bottom dock.",
 
   "CART.FAIL": "Bam! The cart crashed into the car.",
   "CART.FAIL-FAST": "Bam! The cart crashed into the car while moving quickly.",

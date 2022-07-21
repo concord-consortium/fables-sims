@@ -11,7 +11,7 @@ import { IconBack } from "./icons/icon-back";
 import { MessageArea } from "./message-area";
 import { Dialog } from "./dialog";
 import { BoatPicker } from "./boat-picker";
-import { BoatLocation, BoatType } from "../types";
+import { BoatLocation, BoatType, StatusMessage } from "../types";
 import { BoatInstructions } from "./boat-instructions";
 
 import "./stage.scss";
@@ -135,9 +135,22 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
     dialogContent = <BoatInstructions onClick={()=> setSeenInstructions(true)} />;
   }
 
+  let messageType: StatusMessage = "BOAT.START";
+  if (!haveBothBoats) {
+    messageType = "BOAT.INSTRUCTIONS";
+  }
+  if (reachedEnd) {
+    messageType = "BOAT.FINISH_CENTER";
+    if (boatYVelocity > 0) {
+      messageType = "BOAT.FINISH_BOTTOM";
+    }
+    if (boatYVelocity < 0) {
+      messageType = "BOAT.FINISH_TOP";
+    }
+  }
+
   return (
     <div className="chrome">
-      {/* <div>X: {boatPosition.x} | counter: {counter}</div> */}
       <Dialog nowShowing={dialogContent} />
       <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
@@ -168,7 +181,7 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
             { reachedEnd ? <ResetIcon /> : <PlayIcon/> }
           </IconBack>
         </div>
-        <MessageArea messageType="BOAT.START" speed={1}/>
+        <MessageArea messageType={messageType} speed={1}/>
       </div>
     </div>
   );

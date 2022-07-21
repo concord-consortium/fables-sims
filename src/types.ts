@@ -5,5 +5,7 @@ export type CartStatus = "CART.FAIL"|"CART.SUCCESS"|"CART.START"|"CART.IDLE";
 
 export type BoatLocation = undefined | "top" | "bottom";
 export type BoatType = undefined | "big" | "small";
-export type BoatStatus = "BOAT.START";
+export type BoatStatus =
+  "BOAT.START" | "BOAT.INSTRUCTIONS" |
+  "BOAT.FINISH_CENTER" | "BOAT.FINISH_TOP" | "BOAT.FINISH_BOTTOM";
 export type StatusMessage = BoatStatus | CartStatus;
