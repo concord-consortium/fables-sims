@@ -13,7 +13,6 @@ import "./stage.scss";
 import { IconBack } from "./icons/icon-back";
 import useAnimationFrame from "../hooks/useAnimationFrame";
 
-import { FigureNoForce } from "./image-components/figure-no-force";
 import { MessageArea } from "./message-area";
 import { CartStatus } from "../types";
 import { MeterPanel } from "./icons/meter-panel";
@@ -127,10 +126,11 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
           >
             <Layer>
               <Rect width={400} height={30} fill="#87A5AF" y={35} x={0}/>
-              { (cartLocation > figureLocation)
-                ? <Figure x={figureLocation} y={22} force={force}/>
-                : <FigureNoForce x={figureLocation} y={22} />
-              }
+              <Figure
+                pull={cartLocation > figureLocation}
+                force={force}
+                x={figureLocation} y={22}
+              />
               <Cart x={cartLocation} y={25}/>
               <Car x={85} y={23}/>
               {(status === "CART.FAIL") && <Bam x={71} y={22}/>}

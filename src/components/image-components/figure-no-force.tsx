@@ -8,6 +8,7 @@ export interface FigureProps {
   x: number;
   y: number;
 }
+
 export const FigureNoForce = (props: FigureProps) => {
   const { x, y } = props;
   const [image] = useImage(None);
