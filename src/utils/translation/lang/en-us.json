@@ -6,6 +6,8 @@
   "BOAT.FINISH_BOTTOM": "Congratulations you successfully made it to the bottom dock.",
   "BOAT.PICK_INSTRUCTIONS": "Which tugboat size do you want to add?",
 
+  "CART.INSTRUCTIONS": "Hey, theres an out of control shopping cart headed this way.",
+
   "CART.FAIL": "Bam! The cart crashed into the car.",
   "CART.FAIL-FAST": "Bam! The cart crashed into the car while moving quickly.",
   "CART.FAIL-SLOW": "Bam! The cart crashed into the car while moving slowly.",
@@ -24,5 +26,6 @@
   "CART.SUCCESS": "Success, the cart stopped before it crashed into the car.",
 
   "PLAY": "Play",
-  "RESET": "Reset"
+  "RESET": "Reset",
+  "OK": "Ok"
 }

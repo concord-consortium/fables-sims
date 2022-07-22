@@ -9,7 +9,7 @@ interface IDialogProps {
 export const Dialog: React.FC<IDialogProps> = (props:IDialogProps) => {
   const {nowShowing} = props;
 
-  if(nowShowing !== undefined) {
+  if(nowShowing) {
     return(
       <div id="dialog-background">
         <div className="dialog-content">

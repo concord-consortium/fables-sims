@@ -7,6 +7,8 @@ import { Car } from "./image-components/car";
 import { Cart } from "./image-components/cart";
 import { PlayIcon } from "./icons/play-icon";
 import { Bam } from "./image-components/bam";
+import { Dialog } from "./dialog";
+import { CartInstructions } from "./cart-instructions";
 import t from "../utils/translation/translate";
 
 import { IconBack } from "./icons/icon-back";
@@ -50,7 +52,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
   const [cartVelocity, setCartVelocity] = useState(initialVelocity);
   const [playing, setPlaying] = useState(false);
   const [status, setStatus] = useState<CartStatus>("CART.START");
-
+  const [seenInstructions, setSeenInstructions] = useState(false);
   // Don't feel bad about changing these numbers this simulation doesn't
   // use real units and mass is ignored. Just choose values that look right.
 
@@ -113,10 +115,14 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
 
   useAnimationFrame(incrementLocation);
 
+  const dialogContent = !seenInstructions
+    ? <CartInstructions onClick={()=> setSeenInstructions(true)} />
+    : undefined;
+
   // const showVelocity = status !== "CART.START" || playing;
   return (
     <div className="chrome">
-      {/* <VelocityPanel velocity={cartVelocity} show={showVelocity}/> */}
+      <Dialog nowShowing={dialogContent} />
       <MeterPanel speed={cartVelocity} size={"10em"} />
       <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
