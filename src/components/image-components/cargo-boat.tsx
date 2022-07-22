@@ -29,12 +29,15 @@ export const CargoBoat = (props: CargoBoatProps) => {
   const waterOffsetX = (cargoBoatWidth)/ -2 - 100;
   const tugOffsetX = 0;
   const bottomOffsetX = tugOffsetX -10;
-  const bigYOffset = cargoHeight/2 + 50;
-  const smallYOffset = cargoHeight/2 + 60;
+
+  const bigYOffsetTop = cargoHeight/-2 - 50;
+  const bigYOffsetBottom = cargoHeight/2 + 72;
+
+  const smallYOffsetTop = cargoHeight/-2 -20;
+  const smallYOffsetBottom = cargoHeight/2 + 50;
 
   let topGraphic =
     <TugboatSlot
-
       onClick={
         () => switchBoat
           ? switchBoat("top")
@@ -47,27 +50,55 @@ export const CargoBoat = (props: CargoBoatProps) => {
 
   let bottomGraphic =
       <TugboatSlot
-        onClick={
-          () => switchBoat
-            ? switchBoat("bottom")
-            : null
-        }
+        onClick={() => switchBoat ? switchBoat("bottom") : null }
         x={tugOffsetX}
         y={250}
         boat="small"
       />;
 
   if(topBoat === "big") {
-    topGraphic = <Tugboat x={tugOffsetX} y={-bigYOffset} moving={moving} orientation="top" size="big"/>;
+    topGraphic =
+      <Tugboat
+        onClick={() => switchBoat ? switchBoat("top") : null }
+        x={tugOffsetX}
+        y={bigYOffsetTop}
+        moving={moving}
+        orientation="top"
+        size="big"
+      />;
   }
   if(topBoat === "small") {
-    topGraphic = <Tugboat x={tugOffsetX} y={-smallYOffset} moving={moving} orientation="top" size="small"/>;
+    topGraphic =
+      <Tugboat
+        onClick={() => switchBoat ? switchBoat("top") : null }
+        x={tugOffsetX}
+        y={smallYOffsetTop}
+        moving={moving}
+        orientation="top"
+        size="small"
+      />;
   }
   if(bottomBoat === "big") {
-    bottomGraphic = <Tugboat x={bottomOffsetX} y={bigYOffset} moving={moving} orientation="bottom" size="big"/>;
+    bottomGraphic =
+      <Tugboat
+        onClick={() => switchBoat ? switchBoat("bottom") : null }
+        x={bottomOffsetX}
+        y={bigYOffsetBottom}
+        moving={moving}
+        orientation="bottom"
+        size="big"
+      />;
   }
   if(bottomBoat === "small") {
-    bottomGraphic = <Tugboat x={bottomOffsetX} y={smallYOffset} moving={moving} orientation="bottom" size="small"/>;
+    bottomGraphic =
+      <Tugboat
+        onClick={() => switchBoat ? switchBoat("bottom") : null }
+        x={bottomOffsetX}
+        y={smallYOffsetBottom}
+        moving={moving}
+        orientation="bottom"
+        size="small"
+      />;
   }
 
   return (

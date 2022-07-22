@@ -15,10 +15,11 @@ export interface Props {
   moving: boolean;
   orientation: "top" | "bottom";
   size: "big" | "small";
+  onClick?: ()=> void;
 }
 
 export const Tugboat = (props: Props) => {
-  const { x, y, orientation, size, moving } = props;
+  const { x, y, orientation, size, moving, onClick } = props;
   const imageSource = orientation === "bottom" ? bottomImg : topImg;
   const waterRotation = orientation === "bottom" ? -90 : 90;
   const [image] = useImage(imageSource);
@@ -41,6 +42,7 @@ export const Tugboat = (props: Props) => {
       <Image
         offset={{x: imageWidth/2, y:imageHeight/2}}
         image={image}
+        onClick={onClick}
       />
     </Group>
   );

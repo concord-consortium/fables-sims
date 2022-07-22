@@ -12,9 +12,19 @@
     color: hsl(0, 0%, 20%);
     background-color: white;
     border-radius: 5px;
-    margin: 10px;
-    padding: 5px;
+    margin: 0.5rem;
+    padding: 0.5rem;
     opacity: 0.9;
+    font-size: 1rem;
+    color:hsl(0, 0%, 30%);
+    .boat-title {
+      margin-top: 0.2rem;
+      font-weight: bold;
+      color:hsl(0, 0%, 30%);
+    }
+    .boat-description {
+      font-style: italic;
+    }
     cursor: pointer;
     border: none;
     box-shadow: none;

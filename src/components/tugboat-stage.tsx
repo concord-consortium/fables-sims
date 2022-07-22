@@ -125,10 +125,13 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
 
 
   let dialogContent = boatEdit
-    ? <BoatPicker onSelect={(bigOrSmall) => {
-        setBoat({boatType: bigOrSmall, location: boatEdit});
-        setBoatEdit(undefined);
-    }}/>
+    ? <BoatPicker
+        location={boatEdit}
+        onSelect={ (bigOrSmall)  => {
+          setBoat({boatType: bigOrSmall, location: boatEdit});
+          setBoatEdit(undefined);
+        }}
+      />
     : undefined;
 
   if (!seenInstructions) {

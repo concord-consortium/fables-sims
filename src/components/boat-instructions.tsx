@@ -16,7 +16,7 @@ export const BoatInstructions: React.FC<BoatInstructionProps> = (props:BoatInstr
   const {onClick} = props;
 
   return(
-    <button className="boat-instructions">
+    <div className="boat-instructions">
       <div className="left-image">
         <img src={img}/>
       </div>
@@ -28,6 +28,6 @@ export const BoatInstructions: React.FC<BoatInstructionProps> = (props:BoatInstr
           <button className="dismiss" onClick={onClick}> OK </button>
         </div>
       </div>
-    </button>
+    </div>
   );
 };

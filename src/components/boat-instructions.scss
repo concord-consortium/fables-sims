@@ -1,4 +1,4 @@
-button.boat-instructions {
+.boat-instructions {
   display: flex;
   background-color: inherit;
   color: white;
@@ -19,7 +19,7 @@ button.boat-instructions {
   .instructions {
     flex-basis:1;
     margin: 2rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     line-height: 2rem;
   }
 

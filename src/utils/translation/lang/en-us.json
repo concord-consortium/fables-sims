@@ -4,6 +4,7 @@
   "BOAT.FINISH_CENTER": "Congratulations you successfully made it to the center dock.",
   "BOAT.FINISH_TOP": "Congratulations you successfully made it to the top dock.",
   "BOAT.FINISH_BOTTOM": "Congratulations you successfully made it to the bottom dock.",
+  "BOAT.PICK_INSTRUCTIONS": "Which tugboat size do you want to add?",
 
   "CART.FAIL": "Bam! The cart crashed into the car.",
   "CART.FAIL-FAST": "Bam! The cart crashed into the car while moving quickly.",
