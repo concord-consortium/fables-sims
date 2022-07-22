@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Stage, Layer } from "react-konva";
+import { Stage, Layer, Text } from "react-konva";
 import useAnimationFrame from "../hooks/useAnimationFrame";
 import { useElementSize } from "../hooks/useElementSize";
 
@@ -123,7 +123,6 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
     }
   };
 
-
   let dialogContent = boatEdit
     ? <BoatPicker
         location={boatEdit}
@@ -143,12 +142,12 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
     messageType = "BOAT.INSTRUCTIONS";
   }
   if (reachedEnd) {
-    messageType = "BOAT.FINISH_CENTER";
+    messageType = "BOAT.FINISH_B";
     if (boatYVelocity > 0) {
-      messageType = "BOAT.FINISH_BOTTOM";
+      messageType = "BOAT.FINISH_C";
     }
     if (boatYVelocity < 0) {
-      messageType = "BOAT.FINISH_TOP";
+      messageType = "BOAT.FINISH_A";
     }
   }
 
@@ -171,6 +170,9 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
                 moving={playing}
                 switchBoat={ (loc) => setBoatEdit(loc)}
               />
+              <Text fill="#016082" x={85} y={4} fontSize={5} fontStyle="bold" text="A"/>
+              <Text fill="#016082" x={85} y={22} fontSize={5} fontStyle="bold" text="B"/>
+              <Text fill="#016082" x={85} y={39} fontSize={5} fontStyle="bold" text="C"/>
             </Layer>
         </Stage>
       </div>

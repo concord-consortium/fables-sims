@@ -7,5 +7,5 @@ export type BoatLocation = undefined | "top" | "bottom";
 export type BoatType = undefined | "big" | "small";
 export type BoatStatus =
   "BOAT.START" | "BOAT.INSTRUCTIONS" |
-  "BOAT.FINISH_CENTER" | "BOAT.FINISH_TOP" | "BOAT.FINISH_BOTTOM";
+  "BOAT.FINISH_B" | "BOAT.FINISH_A" | "BOAT.FINISH_C";
 export type StatusMessage = BoatStatus | CartStatus;
