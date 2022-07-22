@@ -15,7 +15,7 @@ export const CartInstructions: React.FC<CartInstructionProps> = (props:CartInstr
   const {onClick} = props;
 
   return(
-    <div className="boat-instructions">
+    <div className="boat-instructions" data-cy="instructions">
       <div className="left-image">
         <img src={img}/>
       </div>
