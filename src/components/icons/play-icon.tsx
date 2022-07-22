@@ -3,8 +3,8 @@ import React from "react";
 export const PlayIcon = () => {
   return(
     <svg
-      width={42}
-      height={42}
+      width={41}
+      height={41}
       viewBox="0 0 41 41"
       xmlns="http://www.w3.org/2000/svg"
       style={{fillRule:"evenodd", clipRule:"evenodd", strokeLinejoin:"round", strokeMiterlimit:2}}>

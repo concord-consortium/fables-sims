@@ -17,6 +17,10 @@
     align-items: flex-start;
     justify-content: flex-start
   }
+  .tool-label {
+    align-self: flex-start;
+    font-size: 1.5rem
+  }
   > div {
     margin: 5px 10px;
   }
@@ -32,6 +36,4 @@
   align-self: stretch;
 }
 
-.tool-label {
-  align-self: flex-start;
-}
+

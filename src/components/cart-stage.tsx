@@ -44,7 +44,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
   const scale = theWidth / sceneWidth;
 
 
-  const [force, setForce] = useState<ForceSelection>(null);
+  const [force, setForce] = useState<ForceSelection>("CART.FORCE-NONE");
   const [cartLocation, setCartLocation] = useState(initialPosition);
   const [figureLocation, setFigureLocation] = useState(initialFigurePosition);
   const [cartVelocity, setCartVelocity] = useState(initialVelocity);
@@ -139,7 +139,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
       </div>
       <div className="tool-label">{t("CART.PULLING-FORCE")}:</div>
       <div className="toolbar">
-        <ForceSelector selected={null} onChange={selectForce}/>
+        <ForceSelector selected={force} onChange={selectForce}/>
         <div className="play-button">
           <IconBack name={t("PLAY")} selected={!playing} handleSelect={!playing ? togglePlay : undefined}>
             <PlayIcon/>
