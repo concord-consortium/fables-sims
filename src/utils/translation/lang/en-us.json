@@ -9,8 +9,8 @@
   "CART.INSTRUCTIONS": "Hey, theres an out of control shopping cart headed this way.",
 
   "CART.FAIL": "Bam! The cart crashed into the car.",
-  "CART.FAIL-FAST": "Bam! The cart crashed into the car while moving quickly.",
-  "CART.FAIL-SLOW": "Bam! The cart crashed into the car while moving slowly.",
+  "CART.FAIL-FAST": "Bam! The cart crashed into the car at high speed.",
+  "CART.FAIL-SLOW": "Bam! The cart crashed into the car at low speed.",
 
   "CART.FORCE-NONE": "none",
   "CART.FORCE-SMALL": "small",
