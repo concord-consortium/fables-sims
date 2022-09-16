@@ -1,12 +1,12 @@
 {
   "BOAT.START": " ",
-  "BOAT.INSTRUCTIONS": "Click on the rectanges, and choose a tugboat to push on each side of the ship.",
+  "BOAT.INSTRUCTIONS": "Click on the rectangles, and choose a tugboat to push on each side of the ship.",
   "BOAT.FINISH_A": "Congratulations you successfully made it to dock A",
   "BOAT.FINISH_B": "Congratulations you successfully made it to dock B.",
   "BOAT.FINISH_C": "Congratulations you successfully made it to dock C.",
   "BOAT.PICK_INSTRUCTIONS": "Which tugboat size do you want to add?",
 
-  "CART.INSTRUCTIONS": "Hey, theres an out of control shopping cart headed this way.",
+  "CART.INSTRUCTIONS": "Hey, there's an out of control shopping cart headed towards a parked car!",
 
   "CART.FAIL": "Bam! The cart crashed into the car.",
   "CART.FAIL-FAST": "Bam! The cart crashed into the car at high speed.",
