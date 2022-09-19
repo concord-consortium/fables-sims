@@ -2,7 +2,7 @@ import React from "react";
 import { Group, Image } from "react-konva";
 import useImage from "use-image";
 
-import img from "../../assets/boat-tops/cargo.png";
+import img from "../../assets/boat-tops/cargo-with-labels.png";
 import { WaterChurn } from "./water-churn";
 import { TugboatSlot } from "./tugboat-slot";
 import { Tugboat } from "./tugboat";
@@ -30,11 +30,11 @@ export const CargoBoat = (props: CargoBoatProps) => {
   const tugOffsetX = 0;
   const bottomOffsetX = tugOffsetX -10;
 
-  const bigYOffsetTop = cargoHeight/-2 - 50;
-  const bigYOffsetBottom = cargoHeight/2 + 72;
+  const bigYOffsetTop = cargoHeight/-2 + 15;
+  const bigYOffsetBottom = cargoHeight/2 + 137;
 
-  const smallYOffsetTop = cargoHeight/-2 -20;
-  const smallYOffsetBottom = cargoHeight/2 + 50;
+  const smallYOffsetTop = cargoHeight/-2 + 45;
+  const smallYOffsetBottom = cargoHeight/2 + 115;
 
   let topGraphic =
     <TugboatSlot
@@ -44,7 +44,7 @@ export const CargoBoat = (props: CargoBoatProps) => {
           : null
       }
       x={tugOffsetX}
-      y={-200}
+      y={-145}
       boat="small"
     />;
 
@@ -52,7 +52,7 @@ export const CargoBoat = (props: CargoBoatProps) => {
       <TugboatSlot
         onClick={() => switchBoat ? switchBoat("bottom") : null }
         x={tugOffsetX}
-        y={250}
+        y={300}
         boat="small"
       />;
 
