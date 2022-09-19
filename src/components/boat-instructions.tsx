@@ -16,7 +16,7 @@ export const BoatInstructions: React.FC<BoatInstructionProps> = (props:BoatInstr
   const {onClick} = props;
 
   return(
-    <div className="boat-instructions">
+    <div className="boat-instructions" onClick={onClick}>
       <div className="left-image">
         <img src={img}/>
       </div>
