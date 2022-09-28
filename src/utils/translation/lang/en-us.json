@@ -12,14 +12,14 @@
   "CART.FAIL-FAST": "Bam! The cart crashed into the car at high speed.",
   "CART.FAIL-SLOW": "Bam! The cart crashed into the car at low speed.",
 
-  "CART.FORCE-NONE": "none",
-  "CART.FORCE-SMALL": "small",
-  "CART.FORCE-LARGE": "large",
+  "CART.FORCE-NONE": "no force",
+  "CART.FORCE-SMALL": "small force",
+  "CART.FORCE-LARGE": "large force",
   "CART.PULLING-FORCE": "Pulling force on cart",
 
-  "CART.ZERO": "Zero",
-  "CART.SLOW": "Slow",
-  "CART.FAST": "Fast",
+  "CART.ZERO": "Zero speed",
+  "CART.SLOW": "Slow speed",
+  "CART.FAST": "Fast speed",
 
   "CART.START": " ",
   "CART.IDLE": " ",
