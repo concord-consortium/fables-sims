@@ -18,8 +18,8 @@
   "CART.PULLING-FORCE": "Pulling force on cart",
 
   "CART.ZERO": "Zero speed",
-  "CART.SLOW": "Slow speed",
-  "CART.FAST": "Fast speed",
+  "CART.SLOW": "Low speed",
+  "CART.FAST": "High speed",
 
   "CART.START": " ",
   "CART.IDLE": " ",
