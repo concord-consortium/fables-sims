@@ -15,7 +15,7 @@
   "CART.FORCE-NONE": "no force",
   "CART.FORCE-SMALL": "small force",
   "CART.FORCE-LARGE": "large force",
-  "CART.PULLING-FORCE": "Pulling force on cart",
+  "CART.PULLING-FORCE": "Select the pulling force on cart",
 
   "CART.ZERO": "Zero speed",
   "CART.SLOW": "Low speed",
