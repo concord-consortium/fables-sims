@@ -103,7 +103,7 @@ export const CargoBoat = (props: CargoBoatProps) => {
 
   return (
     <Group x={x} y={y} scale={{x: scale, y:scale}}>
-      { moving && <WaterChurn x={waterOffsetX} y={10} play={true} rotation={0} /> }
+      { moving && <WaterChurn x={waterOffsetX} y={80} play={true} rotation={0} /> }
       <Image
         offset={{x: cargoBoatWidth/2, y: cargoHeight/2}}
         image={image}
