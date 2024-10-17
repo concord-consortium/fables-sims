@@ -4,7 +4,10 @@
   "BOAT.FINISH_A": "Congratulations you successfully made it to dock A",
   "BOAT.FINISH_B": "Congratulations you successfully made it to dock B.",
   "BOAT.FINISH_C": "Congratulations you successfully made it to dock C.",
-  "BOAT.PICK_INSTRUCTIONS": "Which tugboat size do you want to add?",
+  "BOAT.PICK_INSTRUCTIONS": "What force should the tugboat push with?",
+  "BOAT.FORCE-SMALL": "small pushing force",
+  "BOAT.FORCE-LARGE": "large pushing force",
+  
 
   "CART.INSTRUCTIONS": "Hey, there's an out of control shopping cart headed towards a parked car!",
 
