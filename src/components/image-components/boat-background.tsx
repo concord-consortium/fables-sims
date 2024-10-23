@@ -2,7 +2,7 @@ import React from "react";
 import { Image } from "react-konva";
 import useImage from "use-image";
 
-import img from "../../assets/boats-background.png";
+import img from "../../assets/boats-background.jpg";
 
 export interface BoatGroundProps {
   x: number;
