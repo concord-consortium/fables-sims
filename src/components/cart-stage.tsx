@@ -123,7 +123,7 @@ export const CartStage: React.FC<CartStageProps> = (props:CartStageProps) => {
   return (
     <div className="chrome">
       <Dialog nowShowing={dialogContent} />
-      <MeterPanel speed={cartVelocity} size={"10em"} />
+      <MeterPanel speed={cartVelocity} size={"10em"} messageType={status}/>
       <div className="stage-container" ref={stageRef} data-cy="stage">
         <Stage
           width={width}
