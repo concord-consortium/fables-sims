@@ -63,12 +63,17 @@ jobs:
     needs:
       - build_test
       - cypress
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - name: Setup Java (Amazon Corretto)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '8'
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.7'
       - name: Install Dependencies

@@ -33,8 +33,8 @@ export const CargoBoat = (props: CargoBoatProps) => {
   const bigYOffsetTop = cargoHeight/-2 + 15;
   const bigYOffsetBottom = cargoHeight/2 + 137;
 
-  const smallYOffsetTop = cargoHeight/-2 + 45;
-  const smallYOffsetBottom = cargoHeight/2 + 115;
+//  const smallYOffsetTop = cargoHeight/-2 + 45;
+//  const smallYOffsetBottom = cargoHeight/2 + 115;
 
   let topGraphic =
     <TugboatSlot
@@ -72,7 +72,7 @@ export const CargoBoat = (props: CargoBoatProps) => {
       <Tugboat
         onClick={() => switchBoat ? switchBoat("top") : null }
         x={tugOffsetX}
-        y={smallYOffsetTop}
+        y={bigYOffsetTop}
         moving={moving}
         orientation="top"
         size="small"
@@ -94,7 +94,7 @@ export const CargoBoat = (props: CargoBoatProps) => {
       <Tugboat
         onClick={() => switchBoat ? switchBoat("bottom") : null }
         x={bottomOffsetX}
-        y={smallYOffsetBottom}
+        y={bigYOffsetBottom}
         moving={moving}
         orientation="bottom"
         size="small"
@@ -103,13 +103,13 @@ export const CargoBoat = (props: CargoBoatProps) => {
 
   return (
     <Group x={x} y={y} scale={{x: scale, y:scale}}>
-      { moving && <WaterChurn x={waterOffsetX} y={10} play={true} rotation={0} /> }
+      {topGraphic}
+      {bottomGraphic}
+      { moving && <WaterChurn x={waterOffsetX} y={80} play={true} rotation={0} /> }
       <Image
         offset={{x: cargoBoatWidth/2, y: cargoHeight/2}}
         image={image}
       />
-      {topGraphic}
-      {bottomGraphic}
     </Group>
     );
 };

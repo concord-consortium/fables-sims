@@ -15,21 +15,18 @@ interface BoatPickerProps {
 
 interface Choice {
   title: string,
-  description: string,
   img: string,
   id: BoatType
 }
 
 const choices:Choice[] = [
   {
-    title: "small tugboat",
-    description: "small pushing force",
+    title: t("BOAT.FORCE-SMALL"),
     img: small,
     id: "small"
   },
   {
-    title: "big tugboat",
-    description: "large pushing force",
+    title: t("BOAT.FORCE-LARGE"),
     img: big,
     id: "big"
   }
@@ -41,7 +38,7 @@ export const BoatPicker: React.FC<BoatPickerProps> = (props:BoatPickerProps) => 
   const {onSelect} = props;
 
   const choiceDiv = (choice: Choice) => {
-    const {id, img, title, description} = choice;
+    const {id, img, title} = choice;
     const onClick = () => {
       if(onSelect) {
         onSelect(id);
@@ -51,7 +48,6 @@ export const BoatPicker: React.FC<BoatPickerProps> = (props:BoatPickerProps) => 
       <button key={id} className="choice" onClick={onClick}>
         <img src={img} />
         <div className="boat-title">{title}</div>
-        <div className="boat-description">{description}</div>
       </button>
     );
   };

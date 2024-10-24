@@ -1,6 +1,7 @@
 import React from "react";
 import t from "../../utils/translation/translate";
 import {Meter} from "./meter";
+import { StatusMessage } from "../../types";
 
 import { red, yellow, green } from "../../colors";
 
@@ -27,18 +28,37 @@ const spanForSpeed = (speed: number) => {
   );
 };
 
+const spanForMessage = (messageType: StatusMessage, speed: number) => {
+  let message = t(messageType);
+  if (messageType === "CART.SUCCESS") {
+    message = t("CART.END-SLOWED-A-LOT");
+  }  
+  else if (messageType === "CART.FAIL") {
+    message = t("CART.END-SLOWED-A-LITTLE");
+    if(speed > 0.6) {
+      message = t("CART.END-NO-CHANGE");
+    }
+  }
+  return (
+    <span className="message-text">{message}</span>
+  );
+};
+
 interface Props {
   speed: number; // 0 -> 1
   size: string;
+  messageType: StatusMessage;
 }
 
 export const MeterPanel = (props: Props) => {
-  const {speed, size} = props;
+  const {speed, size, messageType} = props;
   const textReadout = spanForSpeed(speed);
+  const messageReadout = spanForMessage(messageType,speed);
   return(
     <div className="meter-panel">
       <Meter value={speed} size={size} />
         {textReadout}
+        {messageReadout}
     </div>
   );
 };

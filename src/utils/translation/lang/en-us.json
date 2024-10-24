@@ -4,13 +4,16 @@
   "BOAT.FINISH_A": "Congratulations you successfully made it to dock A",
   "BOAT.FINISH_B": "Congratulations you successfully made it to dock B.",
   "BOAT.FINISH_C": "Congratulations you successfully made it to dock C.",
-  "BOAT.PICK_INSTRUCTIONS": "Which tugboat size do you want to add?",
+  "BOAT.PICK_INSTRUCTIONS": "What force should the tugboat push with?",
+  "BOAT.FORCE-SMALL": "small pushing force",
+  "BOAT.FORCE-LARGE": "large pushing force",
+  
 
   "CART.INSTRUCTIONS": "Hey, there's an out of control shopping cart headed towards a parked car!",
 
   "CART.FAIL": "Bam! The cart crashed into the car.",
-  "CART.FAIL-FAST": "Bam! The cart crashed into the car at high speed.",
-  "CART.FAIL-SLOW": "Bam! The cart crashed into the car at low speed.",
+  "CART.FAIL-FAST": "Bam! There was no change in motion and the cart crashed into the car.",
+  "CART.FAIL-SLOW": "Bam! The cart slowed down a little but still crashed into the car.",
 
   "CART.FORCE-NONE": "no force",
   "CART.FORCE-SMALL": "small force",
@@ -20,10 +23,13 @@
   "CART.ZERO": "Zero speed",
   "CART.SLOW": "Low speed",
   "CART.FAST": "High speed",
+  "CART.END-NO-CHANGE": "No change in motion",
+  "CART.END-SLOWED-A-LITTLE": "Slowed down a little",
+  "CART.END-SLOWED-A-LOT": "Slowed down a lot",
 
   "CART.START": " ",
   "CART.IDLE": " ",
-  "CART.SUCCESS": "Success, the cart stopped before it crashed into the car.",
+  "CART.SUCCESS": "Success, the cart slowed down a lot and did not hit the car.",
 
   "PLAY": "Play",
   "RESET": "Reset",

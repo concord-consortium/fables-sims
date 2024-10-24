@@ -31,11 +31,11 @@ export interface IBoatEdit {
 }
 
 export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProps) => {
-  const boatStartPosition = {x: 20, y:23};
+  const boatStartPosition = {x: 20, y:21.5};
   const boatXVelocity = 10;
   const maxY = 40;
   const minY = 5;
-  const maxX = 67;
+  const maxX = 68.5;
 
   let boatYVelocity = 0;
   const {sceneWidth, aspectRatio } = props;
@@ -83,9 +83,9 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
 
   if (topBoat !== bottomBoat) {
     if (topBoat === "big") {
-      boatYVelocity = 4;
+      boatYVelocity = 3.0;
     } else {
-      boatYVelocity = -4;
+      boatYVelocity = -2.9;
     }
   }
 
@@ -170,9 +170,9 @@ export const TugboatStage: React.FC<TugboatStageProps> = (props:TugboatStageProp
                 moving={playing}
                 switchBoat={ (loc) => setBoatEdit(loc)}
               />
-              <Text fill="#016082" x={85} y={4} fontSize={5} fontStyle="bold" text="A"/>
+              <Text fill="#016082" x={85} y={8} fontSize={5} fontStyle="bold" text="A"/>
               <Text fill="#016082" x={85} y={22} fontSize={5} fontStyle="bold" text="B"/>
-              <Text fill="#016082" x={85} y={39} fontSize={5} fontStyle="bold" text="C"/>
+              <Text fill="#016082" x={85} y={36.5} fontSize={5} fontStyle="bold" text="C"/>
             </Layer>
         </Stage>
       </div>
