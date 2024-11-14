@@ -3,9 +3,11 @@ import { Group, Image } from "react-konva";
 import useImage from "use-image";
 
 import { WaterChurn } from "./water-churn";
+import { ForceImage } from "./force-indicator";
 
 import bottomImg from "../../assets/boat-tops/big-bottom.png";
 import topImg from "../../assets/boat-tops/big-top.png";
+
 const imageWidth = 70;
 const imageHeight = 200;
 
@@ -23,12 +25,12 @@ export const Tugboat = (props: Props) => {
   const imageSource = orientation === "bottom" ? bottomImg : topImg;
   const waterRotation = orientation === "bottom" ? -90 : 90;
   const [image] = useImage(imageSource);
-
-  const boatScale = size === "big" ? 1 : 0.7;
+  const boatScale = 1;
+  const forceScale = size === "big" ? 1 : 0.5;
   const tugScale = {x: boatScale, y: boatScale};
-  const waterOffsetY = orientation === "bottom"
+  const waterOffsetY = (orientation === "bottom"
     ? imageHeight * boatScale - 1
-    : (imageHeight * boatScale) * -1 + 1;
+    : (imageHeight * boatScale) * -1 + 1) * (size === "big" ? 1 : 0.6);
   return (
     <Group x={x} y={y} scale={tugScale}>
       { moving &&
@@ -37,12 +39,19 @@ export const Tugboat = (props: Props) => {
           y={waterOffsetY}
           play={true}
           rotation={waterRotation}
+          scale={forceScale}
         />
       }
       <Image
         offset={{x: imageWidth/2, y:imageHeight/2}}
         image={image}
         onClick={onClick}
+      />
+      <ForceImage
+        x={imageWidth-25}
+        y={waterOffsetY}
+        orientation={orientation}
+        size={size}
       />
     </Group>
   );
